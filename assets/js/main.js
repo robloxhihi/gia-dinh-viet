@@ -9,7 +9,7 @@ const CONFIG = {
   githubRepo: "robloxhihi/giadinhviet-web",
 
   /* 2. Ten tag cua Release, vi du "v2". De trong "" = chua tao Release. */
-  releaseTag: "",
+  releaseTag: "v2",
 
   /* 3. Ten file APK da tai len Release. Bao gio cung khong doi thanh ten game. */
   apkFileName: "GiaDinhViet-v2.apk",
