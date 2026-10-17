@@ -11,3 +11,6 @@ Thumbs.db
 .vscode/
 .idea/
 *.swp
+
+# Tam: thong tin asset CI sinh ra, khong thuoc trang
+tmp/
