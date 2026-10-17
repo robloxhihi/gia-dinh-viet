@@ -6,17 +6,17 @@
 const CONFIG = {
 
   /* 1. Ten nhan vien GitHub cua ban. Vi du: "dungnt-pro" */
-  githubRepo: "robloxhihi/giadinhviet-web",
+  githubRepo: "robloxhihi/giadinhviet-app",
 
   /* 2. Ten tag cua Release, vi du "v2". De trong "" = chua tao Release. */
-  releaseTag: "v2",
+  releaseTag: "v6",
 
   /* 3. Ten file APK da tai len Release. Bao gio cung khong doi thanh ten game. */
-  apkFileName: "GiaDinhViet-v2.apk",
+  apkFileName: "GiaDinhViet.apk",
 
-  version: "v2",
-  sizeMB: "79",
-  sha256: "3a4ff78653f9791afa8edec59b26d7b7ae10304e5b77374ed0f3b93f06f6a6dc"
+  version: "v6",
+  sizeMB: "75",
+  sha256: "d58018621aac06b8f9f636191696994a524d60ef3592e3dacbfe5fd0fac94757"
 };
 
 /* ---------------------------------------------------------

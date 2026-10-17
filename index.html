@@ -51,7 +51,7 @@
       </p>
 
       <div class="hero-actions">
-        <a class="btn btn-download" id="btn-tai" href="apk/GiaDinhViet-v2.apk" download>
+        <a class="btn btn-download" id="btn-tai" href="https://github.com/robloxhihi/giadinhviet-app/releases/download/v6/GiaDinhViet.apk" download>
           <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M4 20h16"/></svg>
           <span>TẢI FILE APK</span>
         </a>
@@ -60,8 +60,8 @@
 
       <ul class="chips">
         <li>Android 8.0+</li>
-        <li><span id="meta-version">v2</span></li>
-        <li><span id="meta-size">79 MB</span></li>
+        <li><span id="meta-version">v6</span></li>
+        <li><span id="meta-size">75 MB</span></li>
         <li>Kotlin · Compose</li>
         <li>Firebase</li>
       </ul>
@@ -160,10 +160,11 @@
     <h2>31 quyền, dùng để làm gì</h2>
     <p class="col-lede">Android hiện toàn bộ danh sách này lúc cài. Ghi sẵn để bạn khỏi bất ngờ.</p>
     <dl class="perm-list">
-      <div><dt>Vị trí</dt><dd><code>ACCESS_FINE_LOCATION</code> <code>ACCESS_BACKGROUND_LOCATION</code> — định vị cả khi app đã đóng</dd></div>
+      <div><dt>Camera + mic</dt><dd><code>CAMERA</code> <code>RECORD_AUDIO</code> — gọi thoại và gọi video giữa hai tài khoản trong cùng gia đình, qua WebRTC</dd></div>
       <div><dt>SOS</dt><dd><code>SEND_SMS</code> <code>READ_SMS</code> <code>CALL_PHONE</code> — gọi và nhắn tin khẩn cấp khi mất Internet</dd></div>
       <div><dt>Thống kê</dt><dd><code>PACKAGE_USAGE_STATS</code> — đọc thời gian dùng app khác, cấp thủ công</dd></div>
-      <div><dt>Chưa hợp lý</dt><dd><code>CAMERA</code> <code>RECORD_AUDIO</code> — tính năng chưa xong nhưng đã xin quyền</dd></div>
+      <div><dt>Vị trí</dt><dd><code>ACCESS_BACKGROUND_LOCATION</code> — định vị cả khi app đã đóng</dd></div>
+      <div><dt>Chặn app</dt><dd><b>Trợ năng (Accessibility)</b> — không phải quyền trong manifest, bạn tự bật; app chỉ nhìn tên app đang mở, không đọc nội dung màn hình</dd></div>
     </dl>
   </div>
 
@@ -171,12 +172,13 @@
     <h2>App chưa làm được</h2>
     <p class="col-lede">Nói trước để bạn không kỳ vọng sai.</p>
     <ul class="limit-list">
-      <li><strong>Không chặn được ứng dụng khác.</strong> Chỉ theo dõi rồi nhắc.</li>
+      <li><strong>Chặn ứng dụng phải bật Trợ năng thủ công.</strong> Sau khi bật, app bị chặn sẽ bị đẩy về màn hình Home. Bàn phím, Google Play Services, CH Play và màn hình chính không bao giờ bị chặn — kể cả khi chọn nhầm trong danh sách.</li>
+      <li><strong>Đây là khoá mềm.</strong> Tắt Trợ năng trong Cài đặt là hết chặn. Đây là thoả thuận trong nhà, không phải khoá cứng kiểu MDM.</li>
       <li><strong>Không có trên CH Play.</strong> APK ký debug key.</li>
       <li><strong>Không dùng được khi chưa đăng nhập.</strong></li>
       <li><strong>Chỉ hiện vị trí sau khi hai bên tự ghép mã.</strong> Không theo dõi được người không đồng ý.</li>
     </ul>
-    <a class="text-link" href="https://github.com/robloxhihi/giadinhviet-web">Mã nguồn trên GitHub →</a>
+    <a class="text-link" href="https://github.com/robloxhihi/giadinhviet-app">Mã nguồn app + CI build trên GitHub →</a>
   </div>
 </section>
 
@@ -188,14 +190,15 @@
     <div class="step-card"><span>2</span><p>Cho phép "cài ứng dụng không rõ nguồn gốc"</p></div>
     <div class="step-card"><span>3</span><p>Cấp quyền Vị trí ở chế độ <em>Always</em></p></div>
     <div class="step-card"><span>4</span><p>Mở quyền Usage Access trong Cài đặt hệ thống</p></div>
+    <div class="step-card"><span>5</span><p>Muốn chặn app: bật <em>Gia Đình Việt</em> trong Cài đặt → Trợ năng tiếp cận</p></div>
   </div>
 </section>
 
 <!-- ============ TAI ============ -->
 <section class="download" id="tai">
-  <h2>Gia Đình Việt v2</h2>
-  <p>Android 8.0 trở lên · 79 MB · ký debug key</p>
-  <a class="btn btn-download" id="btn-tai-2" href="apk/GiaDinhViet-v2.apk" download>
+  <h2>Gia Đình Việt v6</h2>
+  <p>Android 8.0 trở lên · 75 MB · ký debug key · có bộ chặn app theo lịch</p>
+  <a class="btn btn-download" id="btn-tai-2" href="https://github.com/robloxhihi/giadinhviet-app/releases/download/v6/GiaDinhViet.apk" download>
     <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M4 20h16"/></svg>
     <span>TẢI FILE APK</span>
   </a>

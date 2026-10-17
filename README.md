@@ -34,27 +34,45 @@ python -m http.server 8000
 
 Mở `http://127.0.0.1:8000`.
 
-Copy file APK vào `apk/GiaDinhViet-v2.apk` thì nút tải chạy được ngay.
+Copy file APK vào `apk/GiaDinhViet.apk` thì nút tải chạy được ngay.
 
 ---
 
-## Đăng tải lên GitHub
+## APK được build ở đâu
 
-File APK **không** commit vào repo (79 MB, và git sẽ giữ nó mãi mãi). Đưa lên Releases:
+**Không build trên máy cá nhân.** GitHub Actions trong repo mã nguồn
+[`robloxhihi/giadinhviet-app`](https://github.com/robloxhihi/giadinhviet-app)
+Tất cả: push lên `main` → chạy test unit + `assembleDebug`; đẩy tag `v*` →
+tạo Release kèm file `GiaDinhViet.apk`.
 
-1. Tạo repo public, push thư mục này.
-2. **Releases → Draft a new release → tag `v2` → Upload binary** → chọn file APK.
-3. Mở `assets/js/main.js`, điền 3 ô trong `CONFIG`:
+Quy trình ra bản mới:
 
-```js
-githubRepo:    "robloxhihi/giadinhviet",
-releaseTag:    "v2",
-apkFileName:   "GiaDinhViet-v2.apk",
+```bash
+cd GiaDinhViet-v2
+git push origin main
+curl -X POST -H "Authorization: Bearer $TOKEN" \
+  https://api.github.com/repos/robloxhihi/giadinhviet-app/git/refs \
+  -d '{"ref":"refs/tags/v6","sha":"<shaHEAD>"}'
 ```
 
-4. Vào **Settings → Pages → Branch: main / folder: /(root)** → trang live.
+File APK **không** commit vào repo trang (75 MB, và git sẽ giữ nó mãi mãi).
+Sau khi Release có file, điền vào `assets/js/main.js`:
 
-Xong. Nút tải trên trang sẽ trỏ thẳng vào file trong Release.
+```js
+githubRepo:    "robloxhihi/giadinhviet-app",
+releaseTag:    "v6",
+apkFileName:   "GiaDinhViet.apk",
+sizeMB:        "75",
+sha256:        "<digest cua asset tren GitHub>",
+```
+
+`sha256` lấy từ API, không cần tải file về máy:
+
+```bash
+curl -s -H "Authorization: Bearer $TOKEN" \
+  https://api.github.com/repos/robloxhihi/giadinhviet-app/releases/tags/v6 \
+  | jq -r '.assets[0].digest'
+```
 
 ---
 
@@ -62,13 +80,13 @@ Xong. Nút tải trên trang sẽ trỏ thẳng vào file trong Release.
 
 Đừng dùng tên game hay tên linh tinh. Người dùng thấy `GarenaTiMi.apk` khi cài một app mang tên Gia Đình Việt thì họ có quyền nghi ngờ.
 
-Tên chuẩn: `GiaDinhViet-v2.apk`. Trùng với tên app, trùng với tag Release.
+Tên chuẩn: `GiaDinhViet.apk`. Trùng với tên app.
 
 ---
 
 ## Quyền ứng dụng
 
-Bản v2 xin 31 quyền. Android liệt kê hết trên màn hình cài đặt, nên ghi rõ ở đây:
+Bản hiện tại xin 31 quyền. Android liệt kê hết trên màn hình cài đặt, nên ghi rõ ở đây:
 
 | Nhóm | Quyền | Dùng để làm gì |
 |---|---|---|
