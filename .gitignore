@@ -1,0 +1,13 @@
+# File APK khong nam trong git. Tai len GitHub Releases.
+apk/
+*.apk
+*.zip
+
+# He dieu hanh
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
