@@ -6,7 +6,7 @@
 const CONFIG = {
 
   /* 1. Ten nhan vien GitHub cua ban. Vi du: "dungnt-pro" */
-  githubRepo: "TEN_NGUOI_DUNG/giadinhviet",
+  githubRepo: "robloxhihi/giadinhviet",
 
   /* 2. Ten tag cua Release, vi du "v2". De trong "" = chua tao Release. */
   releaseTag: "",

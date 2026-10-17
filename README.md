@@ -47,7 +47,7 @@ File APK **không** commit vào repo (79 MB, và git sẽ giữ nó mãi mãi). 
 3. Mở `assets/js/main.js`, điền 3 ô trong `CONFIG`:
 
 ```js
-githubRepo:    "ten-ban/ten-repo",
+githubRepo:    "robloxhihi/giadinhviet",
 releaseTag:    "v2",
 apkFileName:   "GiaDinhViet-v2.apk",
 ```
