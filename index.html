@@ -4,15 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Gia Đình Việt — Kết nối yêu thương. An tâm mỗi ngày.</title>
-<meta name="description" content="Ứng dụng Android cho gia đình: định vị GPS, theo dõi thời gian sử dụng máy, nhắn tin trong gia đình, nút SOS. Sản phẩm dự thi KHKT.">
+<meta name="description" content="Ứng dụng Android cho gia đình: định vị GPS, theo dõi thời gian dùng máy, nhắn tin, nút SOS. Sản phẩm dự thi KHKT.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+<div class="starfield" aria-hidden="true"></div>
 
-<!-- ============ HEADER ============ -->
 <header class="site-header">
   <div class="header-inner">
     <a class="brand" href="#top">
@@ -23,82 +23,65 @@
         </svg>
       </span>
       <span class="brand-text">GIA ĐÌNH VIỆT</span>
-      <span class="brand-badge">Sản phẩm dự thi KHKT</span>
     </a>
 
     <nav class="nav" aria-label="Điều hướng chính">
       <a href="#tinh-nang">Tính năng</a>
-      <a href="#bao-mat">Bảo mật</a>
-      <a href="#huong-dan">Hướng dẫn</a>
+      <a href="#quyen">Quyền</a>
+      <a href="#huong-dan">Cài đặt</a>
     </nav>
 
     <a class="btn btn-outline btn-apk" href="#tai">
-      <svg class="ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.6 9.5A7 7 0 0 0 12 5a7 7 0 0 0-5.6 4.5H4a1 1 0 0 0 0 2h.3a7 7 0 0 0 2 6.4V21a1 1 0 0 0 2 0v-2.2h.3v2.2a1 1 0 0 0 2 0v-2.2h.3V21a1 1 0 0 0 2 0v-3.1a7 7 0 0 0 2-6.4h.3a1 1 0 0 0 0-2h-1.6ZM8.5 8.5a.8.8 0 1 1 0-1.6.8.8 0 0 1 0 1.6Zm7 0a.8.8 0 1 1 0-1.6.8.8 0 0 1 0 1.6Z"/></svg>
+      <svg class="ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.6 9.5A7 7 0 0 0 12 5a7 7 0 0 0-5.6 4.5H4a1 1 0 0 0 0 2h.3a7 7 0 0 0 2 6.4V21a1 1 0 0 0 2 0v-2.2h6.4V21a1 1 0 0 0 2 0v-3.1a7 7 0 0 0 2-6.4h.3a1 1 0 0 0 0-2h-1.4Z"/></svg>
       Android APK
     </a>
   </div>
 </header>
 
-<!-- ============ HERO ============ -->
 <main id="top">
+<!-- ============ HERO ============ -->
 <section class="hero">
   <div class="hero-grid">
-
     <div class="hero-copy">
-      <h1 class="hero-title">Gia Đình Việt</h1>
-      <p class="hero-tagline">Kết nối yêu thương. An tâm mỗi ngày.</p>
+      <p class="eyebrow">Sản phẩm dự thi KHKT</p>
+      <h1 class="hero-title">Gia Đình<br>Việt</h1>
+      <p class="hero-tagline">Kết nối yêu thương.<br>An tâm mỗi ngày.</p>
       <p class="hero-lede">
-        Ứng dụng kết nối gia đình, chia sẻ vị trí và hỗ trợ quản lý thời gian
-        sử dụng điện thoại. Chạy trên Android, cài đặt trực tiếp từ file APK.
+        Định vị, thời gian dùng máy, nhắn tin và nút SOS — trong một app gia đình.
       </p>
 
-      <a class="btn btn-download" id="btn-tai" href="apk/GiaDinhViet-v2.apk" download>
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M4 20h16"/>
-        </svg>
-        <span>TẢI FILE APK</span>
-      </a>
+      <div class="hero-actions">
+        <a class="btn btn-download" id="btn-tai" href="apk/GiaDinhViet-v2.apk" download>
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M4 20h16"/></svg>
+          <span>TẢI FILE APK</span>
+        </a>
+        <a class="btn btn-ghost" href="#tinh-nang">Xem tính năng</a>
+      </div>
 
-      <p class="hero-meta">
-        <svg class="ico-16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.6 9.5A7 7 0 0 0 12 5a7 7 0 0 0-5.6 4.5H4a1 1 0 0 0 0 2h.3a7 7 0 0 0 2 6.4V21a1 1 0 0 0 2 0v-2.2h6.4V21a1 1 0 0 0 2 0v-3.1a7 7 0 0 0 2-6.4h.3a1 1 0 0 0 0-2h-1.4Z"/></svg>
-        <span>Dành cho Android 8.0 trở lên</span>
-        <span class="dot">•</span>
-        <span>APK cài đặt trực tiếp</span><br>
-        <span class="meta-pad">Phiên bản <strong id="meta-version">v2</strong></span>
-        <span class="dot">•</span>
-        <span>Kích thước <strong id="meta-size">79 MB</strong></span>
-      </p>
-
-      <a class="btn btn-ghost" href="#tinh-nang">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
-        Xem tính năng
-      </a>
+      <ul class="chips">
+        <li>Android 8.0+</li>
+        <li><span id="meta-version">v2</span></li>
+        <li><span id="meta-size">79 MB</span></li>
+        <li>Kotlin · Compose</li>
+        <li>Firebase</li>
+      </ul>
     </div>
 
-    <!-- 3 khung điện thoại -->
     <div class="phones">
       <article class="phone phone-side">
         <div class="phone-screen">
           <div class="statusbar"><span>11:13</span><span class="sb-dots"></span></div>
           <div class="scr-head">
-            <span class="scr-ico ico-cyan">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-6 7-11a7 7 0 1 0-14 0c0 5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>
-            </span>
-            <div><h4>Định vị GPS</h4><p>Vị trí chính xác · Cập nhật liên tục</p></div>
+            <span class="scr-ico ico-cyan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-6 7-11a7 7 0 1 0-14 0c0 5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
+            <div><h4>Định vị GPS</h4><p>Cập nhật liên tục</p></div>
           </div>
-          <div class="map">
-            <span class="pin"></span>
-            <span class="map-line"></span>
-          </div>
+          <div class="map"><span class="pin"></span><span class="map-line"></span></div>
           <div class="card">
-            <div class="card-row"><strong>Thành viên gia đình</strong><span class="tag">78%</span></div>
-            <p class="muted">Đang ở gần nhà · cách vài km</p>
+            <div class="card-row"><strong>Thành viên</strong><span class="tag">78%</span></div>
+            <p class="muted">Đang ở gần nhà</p>
           </div>
-          <div class="card">
-            <div class="card-row"><strong>Địa chỉ</strong></div>
-            <p class="muted">Cập nhật từ Firestore</p>
-          </div>
-          <div class="tabbar"><span class="on">Vị trí</span><span>Tổng quan</span><span>Cài đặt</span></div>
+          <div class="card"><div class="card-row"><strong>Địa chỉ</strong></div><p class="muted">Đồng bộ Firestore</p></div>
+          <div class="tabbar"><span>Tổng quan</span><span class="on">Vị trí</span><span>Cài đặt</span></div>
         </div>
       </article>
 
@@ -106,23 +89,19 @@
         <div class="phone-screen">
           <div class="statusbar"><span>11:13</span><span class="sb-dots"></span></div>
           <div class="login-top">
-            <span class="logo-orb">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V20h14V9.5"/></svg>
-            </span>
+            <span class="logo-orb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V20h14V9.5"/></svg></span>
             <h4>GIA ĐÌNH VIỆT</h4>
             <p>Định vị GPS · Xác thực tài khoản</p>
           </div>
-          <p class="step">BƯỚC 1: CHỌN VAI TRÒ</p>
+          <p class="step">CHỌN VAI TRÒ</p>
           <div class="role-row">
-            <button class="role sel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0"/><circle cx="17.5" cy="9" r="2.2"/></svg>Phụ huynh<small>Quản lý &amp; giám sát</small></button>
-            <button class="role"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 8 9-4 9 4-9 4-9-4Z"/><path d="M7 11v4c0 1.5 2.2 3 5 3s5-1.5 5-3v-4"/></svg>Học sinh<small>Kết nối vị trí</small></button>
+            <button class="role sel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0"/><circle cx="17.5" cy="9" r="2.2"/></svg>Phụ huynh<small>Quản lý</small></button>
+            <button class="role"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 8 9-4 9 4-9 4-9-4Z"/><path d="M7 11v4c0 1.5 2.2 3 5 3s5-1.5 5-3v-4"/></svg>Học sinh<small>Kết nối</small></button>
           </div>
           <button class="gbtn"><span class="gmark">G</span>Đăng nhập bằng Google</button>
-          <p class="or">hoặc đăng ký bằng email</p>
           <label class="field"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="3.4"/><path d="M5 20a7 7 0 0 1 14 0"/></svg>Tài khoản</label>
           <label class="field"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>Mật khẩu</label>
           <button class="btn btn-solid btn-block">Đăng nhập</button>
-          <p class="foot-note">Chưa có tài khoản? <a href="#tai">Đăng ký</a></p>
           <div class="tabbar"><span>Tổng quan</span><span>Vị trí</span><span class="on">Gia đình</span><span>Chat</span><span>Cài đặt</span></div>
         </div>
       </article>
@@ -131,35 +110,29 @@
         <div class="phone-screen">
           <div class="statusbar"><span>11:13</span><span class="sb-dots"></span></div>
           <div class="scr-head">
-            <span class="scr-ico ico-cyan">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>
-            </span>
-            <div><h4>Quản lý thời gian</h4><p>Theo dõi thói quen dùng máy</p></div>
+            <span class="scr-ico ico-cyan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg></span>
+            <div><h4>Thời gian dùng</h4><p>Theo dõi &amp; nhắc nhở</p></div>
           </div>
           <div class="card">
-            <p class="muted">Thời gian sử dụng hôm nay</p>
+            <p class="muted">Hôm nay</p>
             <p class="big-num">2 giờ 45 phút</p>
             <div class="bar"><span style="width:69%"></span></div>
-            <p class="tiny">Mốc nhắc: 4 giờ</p>
           </div>
           <div class="card">
-            <p class="muted">Ứng dụng thường dùng</p>
             <ul class="applist">
               <li><span class="app-ico" style="--c:#111">T</span>TikTok<small>1 giờ 12</small></li>
               <li><span class="app-ico" style="--c:#f00">Y</span>YouTube<small>45 phút</small></li>
               <li><span class="app-ico" style="--c:#1877f2">f</span>Facebook<small>32 phút</small></li>
-              <li><span class="app-ico" style="--c:#f9ab00">C</span>Chrome<small>16 phút</small></li>
             </ul>
           </div>
           <div class="tabbar"><span>Tổng quan</span><span class="on">Giờ dùng</span><span>Cài đặt</span></div>
         </div>
       </article>
     </div>
-
   </div>
 </section>
 
-<!-- ============ FEATURE STRIP ============ -->
+<!-- ============ FEATURES ============ -->
 <section class="features" id="tinh-nang">
   <div class="feature-inner">
     <article class="feature">
@@ -168,125 +141,76 @@
     </article>
     <article class="feature">
       <span class="f-ico ico-cyan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0"/><circle cx="17.5" cy="9" r="2.2"/><path d="M15 20a5 5 0 0 1 6 0"/></svg></span>
-      <div><h3>Kết nối phụ huynh</h3><p>Ghép tài khoản và đồng bộ dữ liệu gia đình</p></div>
+      <div><h3>Kết nối phụ huynh</h3><p>Ghép tài khoản, đồng bộ gia đình</p></div>
     </article>
     <article class="feature">
       <span class="f-ico ico-cyan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg></span>
-      <div><h3>Quản lý thời gian</h3><p>Theo dõi thời gian dùng máy và nhắc nhở</p></div>
+      <div><h3>Quản lý thời gian</h3><p>Theo dõi thời gian dùng máy</p></div>
     </article>
     <article class="feature">
       <span class="f-ico ico-red"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3 2 20h20L12 3Z"/><path d="M12 10v4"/><circle cx="12" cy="17" r=".6" fill="currentColor"/></svg></span>
-      <div><h3>Nút SOS</h3><p>Gửi cảnh báo khẩn cấp kèm vị trí</p></div>
+      <div><h3>Nút SOS</h3><p>Cảnh báo khẩn cấp kèm vị trí</p></div>
     </article>
   </div>
 </section>
 
-<!-- ============ BAO MAT ============ -->
-<section class="panel" id="bao-mat">
-  <h2>Bảo mật và quyền ứng dụng</h2>
-  <p class="panel-lede">
-    Bản v2 yêu cầu 31 quyền. Android sẽ liệt kê toàn bộ danh sách này trên màn hình cài đặt,
-    nên mình ghi sẵn ở đây để bạn biết trước khi cài.
-  </p>
-
-  <div class="perm-grid">
-    <div class="perm-card">
-      <h4>Nhóm vị trí</h4>
-      <p><code>ACCESS_FINE_LOCATION</code>, <code>ACCESS_COARSE_LOCATION</code>, <code>ACCESS_BACKGROUND_LOCATION</code>, <code>FOREGROUND_SERVICE_LOCATION</code></p>
-      <p class="why">Để định vị ngay cả khi app đã đóng. Đây là nhóm quyền nhạy cảm nhất của app.</p>
-    </div>
-    <div class="perm-card warn">
-      <h4>Nhóm tin nhắn và cuộc gọi</h4>
-      <p><code>SEND_SMS</code>, <code>READ_SMS</code>, <code>RECEIVE_SMS</code>, <code>CALL_PHONE</code></p>
-      <p class="why">Phục vụ tính năng SOS: gửi tin nhắn cảnh báo kèm tọa độ khi không có Internet, và mở màn hình gọi khẩn cấp. <strong>Không dùng để đọc lén nội dung tin nhắn.</strong></p>
-    </div>
-    <div class="perm-card warn">
-      <h4>Nhóm camera và micro</h4>
-      <p><code>CAMERA</code>, <code>RECORD_AUDIO</code></p>
-      <p class="why">Cho tính năng gọi khẩn cấp. Nếu bạn không bật tính năng này thì quyền vẫn được xin lúc cài — đó là điểm mình sẽ rút kinh nghiệm ở bản sau.</p>
-    </div>
-    <div class="perm-card">
-      <h4>Nhóm thống kê và kết nối</h4>
-      <p><code>PACKAGE_USAGE_STATS</code>, <code>POST_NOTIFICATIONS</code>, <code>BLUETOOTH_SCAN</code>, <code>NEARBY_WIFI_DEVICES</code>, <code>SYSTEM_ALERT_WINDOW</code></p>
-      <p class="why"><code>PACKAGE_USAGE_STATS</code> phải mở thủ công trong Cài đặt hệ thống. Bluetooth và Wi-Fi lân cận dùng cho SOS Mesh.</p>
-    </div>
+<!-- ============ QUYEN + GIOI HAN ============ -->
+<section class="two-col" id="quyen">
+  <div class="col">
+    <h2>31 quyền, dùng để làm gì</h2>
+    <p class="col-lede">Android hiện toàn bộ danh sách này lúc cài. Ghi sẵn để bạn khỏi bất ngờ.</p>
+    <dl class="perm-list">
+      <div><dt>Vị trí</dt><dd><code>ACCESS_FINE_LOCATION</code> <code>ACCESS_BACKGROUND_LOCATION</code> — định vị cả khi app đã đóng</dd></div>
+      <div><dt>SOS</dt><dd><code>SEND_SMS</code> <code>READ_SMS</code> <code>CALL_PHONE</code> — gọi và nhắn tin khẩn cấp khi mất Internet</dd></div>
+      <div><dt>Thống kê</dt><dd><code>PACKAGE_USAGE_STATS</code> — đọc thời gian dùng app khác, cấp thủ công</dd></div>
+      <div><dt>Chưa hợp lý</dt><dd><code>CAMERA</code> <code>RECORD_AUDIO</code> — tính năng chưa xong nhưng đã xin quyền</dd></div>
+    </dl>
   </div>
 
-  <div class="note note-limit">
-    <h4>App không làm được những gì</h4>
-    <ul>
-      <li><strong>Không chặn được ứng dụng khác.</strong> App chỉ đọc thời gian sử dụng rồi nhắc nhở. Muốn chặn thật sự cần Device Admin hoặc Accessibility Service, bản này chưa làm.</li>
-      <li><strong>Không có trên CH Play.</strong> Mới chỉ là bản demo ký bằng debug key.</li>
-      <li><strong>Không chạy được nếu không đăng nhập.</strong> Cần tài khoản Firebase.</li>
+  <div class="col">
+    <h2>App chưa làm được</h2>
+    <p class="col-lede">Nói trước để bạn không kỳ vọng sai.</p>
+    <ul class="limit-list">
+      <li><strong>Không chặn được ứng dụng khác.</strong> Chỉ theo dõi rồi nhắc.</li>
+      <li><strong>Không có trên CH Play.</strong> APK ký debug key.</li>
+      <li><strong>Không dùng được khi chưa đăng nhập.</strong></li>
+      <li><strong>Chỉ hiện vị trí sau khi hai bên tự ghép mã.</strong> Không theo dõi được người không đồng ý.</li>
     </ul>
+    <a class="text-link" href="https://github.com/robloxhihi/giadinhviet">Mã nguồn trên GitHub →</a>
   </div>
-
-  <div class="note note-consent">
-    <h4>Sự đồng ý của người được theo dõi</h4>
-    <p>
-      App chỉ hiển thị vị trí của một tài khoản sau khi tài khoản đó tự nhập mã kết nối
-      và chọn vai trò Học sinh. Vị trí và thời gian dùng máy của một người không tự nguyện
-      ghép tài khoản thì app không lấy được.
-    </p>
-  </div>
-</section>
-
-<!-- ============ CONG NGHE ============ -->
-<section class="panel">
-  <h2>Công nghệ</h2>
-  <ul class="tech-list">
-    <li><span>Ngôn ngữ</span><strong>Kotlin</strong></li>
-    <li><span>Giao diện</span><strong>Jetpack Compose</strong></li>
-    <li><span>Xác thực</span><strong>Firebase Authentication</strong></li>
-    <li><span>Dữ liệu</span><strong>Cloud Firestore</strong></li>
-    <li><span>Định vị</span><strong>Foreground Service</strong></li>
-    <li><span>Hỗ trợ xây dựng</span><strong>Google AI Studio (Gemini)</strong></li>
-  </ul>
 </section>
 
 <!-- ============ HUONG DAN ============ -->
 <section class="panel" id="huong-dan">
-  <h2>Hướng dẫn cài đặt</h2>
-  <ol class="steps">
-    <li><span>1</span><div><h4>Tải file APK</h4><p>Bấm nút <em>Tải file APK</em> ở đầu trang. File tên <code>GiaDinhViet-v2.apk</code>, khoảng 79 MB.</p></div></li>
-    <li><span>2</span><div><h4>Mở cho phép cài ngoài CH Play</h4><p>Android sẽ hỏi <em>Cài ứng dụng không rõ nguồn gốc</em>. Đây là cảnh báo mặc định cho mọi APK không phát hành qua CH Play, không phải dấu hiệu file hỏng.</p></div></li>
-    <li><span>3</span><div><h4>Đọc kỹ danh sách quyền</h4><p>Android liệt kê 31 quyền trước khi cài. Xem lại mục <a href="#bao-mat">Bảo mật</a> ở trên để biết quyền nào dùng cho việc gì.</p></div></li>
-    <li><span>4</span><div><h4>Cấp quyền Vị trí ở chế độ Always</h4><p>Cần cho định vị lúc app đã đóng. Nếu chọn <em>Only while using</em> thì bản đồ sẽ không cập nhật khi điện thoại để yên.</p></div></li>
-    <li><span>5</span><div><h4>Mở quyền Usage Access thủ công</h4><p>Vào Cài đặt ứng dụng trong app → <em>Mở Cài đặt Android để cấp quyền</em>. Android không cho cấp quyền này bằng hộp thoại bật lên.</p></div></li>
-    <li><span>6</span><div><h4>Đăng nhập và ghép tài khoản</h4><p>Phụ huynh chọn vai trò Phụ huynh, học sinh chọn Học sinh rồi nhập mã kết nối của nhau.</p></div></li>
-  </ol>
-</section>
-
-<!-- ============ BAN THIET KE ============ -->
-<section class="panel">
-  <h2>Bản thiết kế giao diện</h2>
-  <p class="panel-lede">Ảnh mô phỏng toàn bộ màn hình chính của ứng dụng.</p>
-  <figure class="shot">
-    <img src="assets/img/hero-bg.png" alt="Bản thiết kế giao diện trang chủ Gia Đình Việt" loading="lazy">
-  </figure>
+  <h2>Cài đặt</h2>
+  <div class="step-grid">
+    <div class="step-card"><span>1</span><p>Tải APK về máy Android</p></div>
+    <div class="step-card"><span>2</span><p>Cho phép "cài ứng dụng không rõ nguồn gốc"</p></div>
+    <div class="step-card"><span>3</span><p>Cấp quyền Vị trí ở chế độ <em>Always</em></p></div>
+    <div class="step-card"><span>4</span><p>Mở quyền Usage Access trong Cài đặt hệ thống</p></div>
+  </div>
 </section>
 
 <!-- ============ TAI ============ -->
 <section class="download" id="tai">
-  <h2>Tải bản cài đặt cho Android</h2>
-  <p>Bản v2 · ký debug key · chưa phát hành trên CH Play</p>
+  <h2>Gia Đình Việt v2</h2>
+  <p>Android 8.0 trở lên · 79 MB · ký debug key</p>
   <a class="btn btn-download" id="btn-tai-2" href="apk/GiaDinhViet-v2.apk" download>
     <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M4 20h16"/></svg>
     <span>TẢI FILE APK</span>
   </a>
-  <p class="sha">SHA-256 file: <code id="sha">—</code></p>
+  <p class="sha">SHA-256 <code id="sha">—</code></p>
 </section>
 </main>
 
 <footer class="site-footer">
   <div class="foot-inner">
-    <p><strong>Gia Đình Việt</strong> — sản phẩm dự thi khoa học kĩ thuật.</p>
+    <p><strong>Gia Đình Việt</strong> — sản phẩm dự thi khoa học kĩ thuật</p>
     <p>
       <a href="https://github.com/robloxhihi/giadinhviet" id="link-repo">Mã nguồn</a> ·
       <a href="https://github.com/robloxhihi/giadinhviet/releases" id="link-release">Bản phát hành</a> ·
-      <a href="#bao-mat">Bảo mật</a>
+      <a href="#quyen">Quyền ứng dụng</a>
     </p>
-    <p class="tiny">Không thu thập dữ liệu ngoài phạm vi mô tả ở trên.</p>
   </div>
 </footer>
 
