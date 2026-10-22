@@ -1,220 +1,231 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Gia Đình Việt — Kết nối yêu thương. An tâm mỗi ngày.</title>
-<meta name="description" content="Ứng dụng Android cho gia đình: định vị GPS, theo dõi thời gian dùng máy, nhắn tin, nút SOS. Sản phẩm dự thi KHKT.">
+<title>Gia Đình Việt — app chặn ứng dụng & giám sát học tập</title>
+<meta name="description" content="Gia Đình Việt: phụ huynh ghép máy con, chặn app, đặt khung giờ và hạn mức phút, xem vị trí, thống kê dùng thật và trợ lý AI đọc đúng số liệu máy. Tải APK 40.0 kèm SHA-256 đối chiếu.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='13' fill='%23F4EEFB'/><circle cx='20' cy='12' r='6' fill='%23B5731A'/><circle cx='17' cy='11' r='5' fill='%23F4EEFB'/><circle cx='9' cy='21' r='1.6' fill='%2317795A'/><circle cx='13' cy='24' r='1.1' fill='%2317795A'/></svg>">
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
-<body>
-<div class="starfield" aria-hidden="true"></div>
+<body data-theme="dream">
+<div class="sky" aria-hidden="true">
+  <span class="moon"></span>
+  <span class="ridge"></span>
+  <i class="fly f1"></i><i class="fly f2"></i><i class="fly f3"></i><i class="fly f4"></i>
+  <i class="fly f5"></i><i class="fly f6"></i><i class="fly f7"></i>
+</div>
 
-<header class="site-header">
-  <div class="header-inner">
-    <a class="brand" href="#top">
-      <span class="brand-mark" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V20h14V9.5"/><path d="M12 20v-5"/>
-          <path d="M16 6c1.6-.4 3 .6 3 2.2-1.6.4-3-.6-3-2.2Z"/>
-        </svg>
-      </span>
-      <span class="brand-text">GIA ĐÌNH VIỆT</span>
-    </a>
-
-    <nav class="nav" aria-label="Điều hướng chính">
-      <a href="#tinh-nang">Tính năng</a>
-      <a href="#quyen">Quyền</a>
-      <a href="#huong-dan">Cài đặt</a>
-    </nav>
-
-    <a class="btn btn-outline btn-apk" href="#tai">
-      <svg class="ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.6 9.5A7 7 0 0 0 12 5a7 7 0 0 0-5.6 4.5H4a1 1 0 0 0 0 2h.3a7 7 0 0 0 2 6.4V21a1 1 0 0 0 2 0v-2.2h6.4V21a1 1 0 0 0 2 0v-3.1a7 7 0 0 0 2-6.4h.3a1 1 0 0 0 0-2h-1.4Z"/></svg>
-      Android APK
-    </a>
-  </div>
+<header class="bar">
+  <a class="brand" href="#top">
+    <svg width="26" height="26" viewBox="0 0 32 32" aria-hidden="true"><circle cx="20" cy="12" r="6.5" fill="currentColor" opacity=".9"/><circle cx="17" cy="11" r="5.5" fill="var(--bg)"/><circle cx="9" cy="21" r="1.8" fill="currentColor"/><circle cx="13.5" cy="24" r="1.1" fill="currentColor"/><circle cx="24" cy="22" r="1.3" fill="currentColor"/></svg>
+    <span>Gia&nbsp;Đình&nbsp;Việt</span>
+  </a>
+  <nav aria-label="Mục chính">
+    <a href="#feature">Tính năng</a>
+    <a href="#ai">Trợ lý AI</a>
+    <a href="#download">Tải về</a>
+    <a href="#verify">Đối chiếu</a>
+    <a href="#install">Cài đặt</a>
+  </nav>
+  <button id="themeBtn" class="ghost" aria-pressed="true">Nền rừng đêm</button>
 </header>
 
 <main id="top">
-<!-- ============ HERO ============ -->
-<section class="hero">
-  <div class="hero-grid">
+  <section class="hero">
     <div class="hero-copy">
-      <p class="eyebrow">Sản phẩm dự thi KHKT</p>
-      <h1 class="hero-title">Gia Đình<br>Việt</h1>
-      <p class="hero-tagline">Kết nối yêu thương.<br>An tâm mỗi ngày.</p>
-      <p class="hero-lede">
-        Định vị, thời gian dùng máy, nhắn tin và nút SOS — trong một app gia đình.
-      </p>
-
-      <div class="hero-actions">
-        <a class="btn btn-download" id="btn-tai" href="https://github.com/robloxhihi/giadinhviet-app/releases/download/v6/GiaDinhViet.apk" download>
-          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M4 20h16"/></svg>
-          <span>TẢI FILE APK</span>
-        </a>
-        <a class="btn btn-ghost" href="#tinh-nang">Xem tính năng</a>
-      </div>
-
+      <p class="eyebrow">Bản 40.0 · Android 7.0 trở lên · build debug</p>
+      <h1>Nội quy dùng điện thoại,<br>hai phía cùng duyệt.</h1>
+      <p class="lede">Phụ huynh ghép máy con qua Firebase. Danh sách chặn, khung giờ và hạn mức phút phải được bên kia bấm <em>Đồng ý</em> mới có hiệu lực; mọi lần đổi đều ghi vào nhật ký không sửa được.</p>
       <ul class="chips">
-        <li>Android 8.0+</li>
-        <li><span id="meta-version">v6</span></li>
-        <li><span id="meta-size">75 MB</span></li>
-        <li>Kotlin · Compose</li>
-        <li>Firebase</li>
+        <li>SHA-256 công khai</li>
+        <li>Không cần root</li>
+        <li>Chặn qua AccessibilityService</li>
+        <li>AI đọc số liệu thật</li>
       </ul>
+      <div class="hero-cta">
+        <a class="cta" href="#download">Tải về &amp; đối chiếu</a>
+      </div>
+    </div>
+    <figure class="hero-shot">
+      <img src="assets/img/app-screens-light.png" alt="Lưới 9 màn hình giao diện ứng dụng Gia Đình Việt (nền sáng)" loading="lazy" width="1024" height="1024">
+    </figure>
+  </section>
+
+  <section id="feature">
+    <h2>App làm gì</h2>
+    <div class="grid">
+      <article><h3>Nội quy hai bên</h3><p>Bên đề xuất không tự thông qua phiếu của mình; đang mở thì không ghi đè.</p></article>
+      <article><h3>Hai lớp chặn</h3><p>Lớp 1: app bị tích. Lớp 2: quá khung giờ hoặc hết hạn mức phút thì chặn mọi app ngoài danh sách miễn chặn.</p></article>
+      <article><h3>Không tự khóa mình</h3><p>Launcher, bàn phím, gọi khẩn cấp, CH Play, Play Services luôn nằm ngoài danh sách chặn.</p></article>
+      <article><h3>Thống kê dùng thật</h3><p>Đọc UsageStats từ nửa đêm tới hiện tại, chạy ngoài luồng chính; biểu đồ tuần tô đúng ô hôm nay.</p></article>
+      <article><h3>Vị trí &amp; nhật ký</h3><p>Thẻ bản đồ 5 lớp nền đã đo tile thật, làm mới khi có điểm mới, có chế độ riêng tư và đánh dấu điểm quá cũ.</p></article>
+      <article><h3>Nhắn tin &amp; SOS</h3><p>Chat giữa hai máy đã ghép nối, kèm tiện ích SOS gửi báo động kèm vị trí.</p></article>
     </div>
 
-    <div class="phones">
-      <article class="phone phone-side">
-        <div class="phone-screen">
-          <div class="statusbar"><span>11:13</span><span class="sb-dots"></span></div>
-          <div class="scr-head">
-            <span class="scr-ico ico-cyan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-6 7-11a7 7 0 1 0-14 0c0 5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
-            <div><h4>Định vị GPS</h4><p>Cập nhật liên tục</p></div>
-          </div>
-          <div class="map"><span class="pin"></span><span class="map-line"></span></div>
-          <div class="card">
-            <div class="card-row"><strong>Thành viên</strong><span class="tag">78%</span></div>
-            <p class="muted">Đang ở gần nhà</p>
-          </div>
-          <div class="card"><div class="card-row"><strong>Địa chỉ</strong></div><p class="muted">Đồng bộ Firestore</p></div>
-          <div class="tabbar"><span>Tổng quan</span><span class="on">Vị trí</span><span>Cài đặt</span></div>
-        </div>
-      </article>
+    <figure class="shot-band">
+      <img src="assets/img/app-screens-dark.png" alt="Lưới 9 màn hình giao diện ứng dụng Gia Đình Việt (nền tối)" loading="lazy" width="1024" height="1024">
+    </figure>
 
-      <article class="phone phone-main">
-        <div class="phone-screen">
-          <div class="statusbar"><span>11:13</span><span class="sb-dots"></span></div>
-          <div class="login-top">
-            <span class="logo-orb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V20h14V9.5"/></svg></span>
-            <h4>GIA ĐÌNH VIỆT</h4>
-            <p>Định vị GPS · Xác thực tài khoản</p>
-          </div>
-          <p class="step">CHỌN VAI TRÒ</p>
-          <div class="role-row">
-            <button class="role sel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0"/><circle cx="17.5" cy="9" r="2.2"/></svg>Phụ huynh<small>Quản lý</small></button>
-            <button class="role"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 8 9-4 9 4-9 4-9-4Z"/><path d="M7 11v4c0 1.5 2.2 3 5 3s5-1.5 5-3v-4"/></svg>Học sinh<small>Kết nối</small></button>
-          </div>
-          <button class="gbtn"><span class="gmark">G</span>Đăng nhập bằng Google</button>
-          <label class="field"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="3.4"/><path d="M5 20a7 7 0 0 1 14 0"/></svg>Tài khoản</label>
-          <label class="field"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>Mật khẩu</label>
-          <button class="btn btn-solid btn-block">Đăng nhập</button>
-          <div class="tabbar"><span>Tổng quan</span><span>Vị trí</span><span class="on">Gia đình</span><span>Chat</span><span>Cài đặt</span></div>
-        </div>
-      </article>
-
-      <article class="phone phone-side">
-        <div class="phone-screen">
-          <div class="statusbar"><span>11:13</span><span class="sb-dots"></span></div>
-          <div class="scr-head">
-            <span class="scr-ico ico-cyan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg></span>
-            <div><h4>Thời gian dùng</h4><p>Theo dõi &amp; nhắc nhở</p></div>
-          </div>
-          <div class="card">
-            <p class="muted">Hôm nay</p>
-            <p class="big-num">2 giờ 45 phút</p>
-            <div class="bar"><span style="width:69%"></span></div>
-          </div>
-          <div class="card">
-            <ul class="applist">
-              <li><span class="app-ico" style="--c:#111">T</span>TikTok<small>1 giờ 12</small></li>
-              <li><span class="app-ico" style="--c:#f00">Y</span>YouTube<small>45 phút</small></li>
-              <li><span class="app-ico" style="--c:#1877f2">f</span>Facebook<small>32 phút</small></li>
-            </ul>
-          </div>
-          <div class="tabbar"><span>Tổng quan</span><span class="on">Giờ dùng</span><span>Cài đặt</span></div>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ============ FEATURES ============ -->
-<section class="features" id="tinh-nang">
-  <div class="feature-inner">
-    <article class="feature">
-      <span class="f-ico ico-cyan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-6 7-11a7 7 0 1 0-14 0c0 5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
-      <div><h3>Định vị GPS</h3><p>Vị trí chính xác, cập nhật liên tục</p></div>
-    </article>
-    <article class="feature">
-      <span class="f-ico ico-cyan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0"/><circle cx="17.5" cy="9" r="2.2"/><path d="M15 20a5 5 0 0 1 6 0"/></svg></span>
-      <div><h3>Kết nối phụ huynh</h3><p>Ghép tài khoản, đồng bộ gia đình</p></div>
-    </article>
-    <article class="feature">
-      <span class="f-ico ico-cyan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg></span>
-      <div><h3>Quản lý thời gian</h3><p>Theo dõi thời gian dùng máy</p></div>
-    </article>
-    <article class="feature">
-      <span class="f-ico ico-red"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3 2 20h20L12 3Z"/><path d="M12 10v4"/><circle cx="12" cy="17" r=".6" fill="currentColor"/></svg></span>
-      <div><h3>Nút SOS</h3><p>Cảnh báo khẩn cấp kèm vị trí</p></div>
-    </article>
-  </div>
-</section>
-
-<!-- ============ QUYEN + GIOI HAN ============ -->
-<section class="two-col" id="quyen">
-  <div class="col">
-    <h2>31 quyền, dùng để làm gì</h2>
-    <p class="col-lede">Android hiện toàn bộ danh sách này lúc cài. Ghi sẵn để bạn khỏi bất ngờ.</p>
-    <dl class="perm-list">
-      <div><dt>Camera + mic</dt><dd><code>CAMERA</code> <code>RECORD_AUDIO</code> — gọi thoại và gọi video giữa hai tài khoản trong cùng gia đình, qua WebRTC</dd></div>
-      <div><dt>SOS</dt><dd><code>SEND_SMS</code> <code>READ_SMS</code> <code>CALL_PHONE</code> — gọi và nhắn tin khẩn cấp khi mất Internet</dd></div>
-      <div><dt>Thống kê</dt><dd><code>PACKAGE_USAGE_STATS</code> — đọc thời gian dùng app khác, cấp thủ công</dd></div>
-      <div><dt>Vị trí</dt><dd><code>ACCESS_BACKGROUND_LOCATION</code> — định vị cả khi app đã đóng</dd></div>
-      <div><dt>Chặn app</dt><dd><b>Trợ năng (Accessibility)</b> — không phải quyền trong manifest, bạn tự bật; app chỉ nhìn tên app đang mở, không đọc nội dung màn hình</dd></div>
-    </dl>
-  </div>
-
-  <div class="col">
-    <h2>App chưa làm được</h2>
-    <p class="col-lede">Nói trước để bạn không kỳ vọng sai.</p>
-    <ul class="limit-list">
-      <li><strong>Chặn ứng dụng phải bật Trợ năng thủ công.</strong> Sau khi bật, app bị chặn sẽ bị đẩy về màn hình Home. Bàn phím, Google Play Services, CH Play và màn hình chính không bao giờ bị chặn — kể cả khi chọn nhầm trong danh sách.</li>
-      <li><strong>Đây là khoá mềm.</strong> Tắt Trợ năng trong Cài đặt là hết chặn. Đây là thoả thuận trong nhà, không phải khoá cứng kiểu MDM.</li>
-      <li><strong>Không có trên CH Play.</strong> APK ký debug key.</li>
-      <li><strong>Không dùng được khi chưa đăng nhập.</strong></li>
-      <li><strong>Chỉ hiện vị trí sau khi hai bên tự ghép mã.</strong> Không theo dõi được người không đồng ý.</li>
+    <h3 class="newhead">Mới ở bản 40.0</h3>
+    <ul class="plain">
+      <li>Bỏ màu ngọc lam, chỉ còn giao diện tối/sáng.</li>
+      <li>Khung giờ chặn nhập bằng số thay vì chấm giờ.</li>
+      <li>Phụ huynh chặn app áp dụng ngay, không cần con duyệt.</li>
+      <li>Thêm nút gỡ khoá AI đã nhập.</li>
     </ul>
-    <a class="text-link" href="https://github.com/robloxhihi/giadinhviet-app">Mã nguồn app + CI build trên GitHub →</a>
-  </div>
-</section>
+  </section>
 
-<!-- ============ HUONG DAN ============ -->
-<section class="panel" id="huong-dan">
-  <h2>Cài đặt</h2>
-  <div class="step-grid">
-    <div class="step-card"><span>1</span><p>Tải APK về máy Android</p></div>
-    <div class="step-card"><span>2</span><p>Cho phép "cài ứng dụng không rõ nguồn gốc"</p></div>
-    <div class="step-card"><span>3</span><p>Cấp quyền Vị trí ở chế độ <em>Always</em></p></div>
-    <div class="step-card"><span>4</span><p>Mở quyền Usage Access trong Cài đặt hệ thống</p></div>
-    <div class="step-card"><span>5</span><p>Muốn chặn app: bật <em>Gia Đình Việt</em> trong Cài đặt → Trợ năng tiếp cận</p></div>
-  </div>
-</section>
+  <section id="lab" class="panel">
+    <div>
+      <h2>Máy thử luật chặn</h2>
+      <p class="muted">Cùng logic chạy trên điện thoại (<code>BlockPolicy.blockReason()</code>), tính ngay trong trình duyệt. Đổi các ô để biết app bị chặn hay được chạy.</p>
+      <form id="lab-form" class="lab" autocomplete="off">
+        <label>Tên gói ứng dụng
+          <input id="pkg" list="pkglist" value="com.zing.mp3" spellcheck="false">
+        </label>
+        <datalist id="pkglist">
+          <option value="com.zing.mp3"></option>
+          <option value="com.snapchat.android"></option>
+          <option value="com.android.settings"></option>
+          <option value="com.android.chrome"></option>
+          <option value="com.google.android.gms"></option>
+          <option value="com.sec.android.app.launcher"></option>
+          <option value="com.aistudio.vesperafamily.vspxql"></option>
+        </datalist>
+        <div class="switches">
+          <label class="sw"><input type="checkbox" id="ticked" checked> Có trong danh sách chặn</label>
+          <label class="sw"><input type="checkbox" id="allowed"> Có trong danh sách miễn chặn</label>
+          <label class="sw"><input type="checkbox" id="active" checked> Nội quy đang bật</label>
+          <label class="sw"><input type="checkbox" id="reminder"> Chỉ nhắc, không chặn</label>
+        </div>
+        <div class="fields">
+          <label>Giờ hiện tại <input type="time" id="now" value="19:30"></label>
+          <label>Khung được dùng — từ <input type="time" id="start" value="19:00"></label>
+          <label>đến <input type="time" id="end" value="20:30"></label>
+        </div>
+        <div class="fields">
+          <label>Đã dùng hôm nay <input type="number" id="used" value="95" min="0" max="1440" step="5"> phút</label>
+          <label>Hạn mức <input type="number" id="cap" value="120" min="0" max="1440" step="5"> phút/ngày</label>
+          <label>Áp dụng ngày <input type="text" id="days" value="T2,T3,T4,T5,T6,T7" spellcheck="false"></label>
+        </div>
+        <p class="muted small">Hôm nay của máy bạn: <strong id="todayLabel">…</strong>. Để trống "Áp dụng ngày" = mọi ngày.</p>
+        <div id="verdict" role="status" aria-live="polite" class="verdict"></div>
+      </form>
+    </div>
+  </section>
 
-<!-- ============ TAI ============ -->
-<section class="download" id="tai">
-  <h2>Gia Đình Việt v6</h2>
-  <p>Android 8.0 trở lên · 75 MB · ký debug key · có bộ chặn app theo lịch</p>
-  <a class="btn btn-download" id="btn-tai-2" href="https://github.com/robloxhihi/giadinhviet-app/releases/download/v6/GiaDinhViet.apk" download>
-    <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M4 20h16"/></svg>
-    <span>TẢI FILE APK</span>
-  </a>
-  <p class="sha">SHA-256 <code id="sha">—</code></p>
-</section>
+  <section id="ai">
+    <h2>Trợ lý AI đọc số liệu thật của máy</h2>
+    <p class="muted">App ghi bản tóm tắt cho <em>từng ngày</em> rồi gửi kèm vào mỗi câu hỏi. Mô hình chỉ nói về con số máy đo được, không tự bịa chuyện nhà bạn.</p>
+    <div class="grid">
+      <article><h3>Một bản ghi mỗi ngày</h3><p>Phút dùng, hạn mức đã duyệt, số lần bị kéo về Home, app dùng nhiều nhất, tỉ lệ theo nhóm, điểm vị trí, cảm xúc trẻ tự đánh dấu. Kèm 7 ngày trước để thấy xu hướng.</p></article>
+      <article><h3>Đếm lúc chặn thật</h3><p>Bộ đếm tăng đúng khi AccessibilityService gọi <code>GLOBAL_ACTION_HOME</code> thành công — không lấy từ danh sách app bị tích.</p></article>
+      <article><h3>Dữ liệu ở lại trong nhà</h3><p>Bản ghi nằm trong SharedPreferences của máy, không đẩy lên Firestore. Nội dung gửi đi là số liệu gộp.</p></article>
+      <article><h3>Mỗi nhà cung cấp một khoá</h3><p>Gemini (AI Studio) và ba model qua OpenRouter; mỗi khoá nhập một lần trên máy, có thể tiêm lúc build qua Repository Secret. Không khoá nào nằm trong repo.</p></article>
+    </div>
+    <p class="muted small">Cần Internet; mỗi câu hỏi tốn token theo giá nhà cung cấp. Câu trả lời là gợi ý tham khảo, không phải chẩn đoán. Khoá API nằm trong APK giải mã được là rủi ro có thật, nên app mặc định yêu cầu nhập khoá trên máy.</p>
+  </section>
+
+  <section id="download">
+    <h2>Tải về &amp; nguồn gốc file</h2>
+    <p class="muted">APK do GitHub Actions build từ một commit: test trước, biên dịch sau, rồi mới đăng file. File tồn tại nghĩa là test đã xanh.</p>
+
+    <div class="gate" id="dl-gate">
+      <p class="gate-title">Xác thực bạn là người trước khi tải</p>
+      <div id="turnstile-mount" class="turnstile"></div>
+      <p class="gate-out idle" id="gate-out" role="status" aria-live="polite">Token sẽ được gửi lên máy chủ để Cloudflare kiểm tra. Chỉ khi máy chủ trả “hợp lệ” liên kết tải mới hiện.</p>
+    </div>
+
+    <div class="hero-cta dl-locked" hidden>
+      <a class="cta" href="https://github.com/robloxhihi/giadinhviet-app/releases/download/v40/GiaDinhViet.apk" download>Tải GiaDinhViet.apk <span>76,1&nbsp;MiB</span></a>
+      <a class="ghost" href="https://github.com/robloxhihi/giadinhviet-app/releases/tag/v40">Trang release</a>
+      <a class="ghost" href="https://github.com/robloxhihi/giadinhviet-app">Mã nguồn</a>
+    </div>
+
+    <p class="muted small honesty">Đường dẫn APK nằm trên GitHub Release công khai, nên ai biết URL vẫn tới được file. Cloudflare Turnstile chặn bot ở <strong>trang này</strong> — người thật tải qua đường sạch, không quảng cáo; đây là chốt cửa nhà, không phải két sắt.</p>
+
+    <div class="table-wrap">
+      <table>
+        <caption class="sr-only">Thông tin bản 40.0</caption>
+        <tbody>
+          <tr><th>Phiên bản</th><td><code>40.0</code> (tag <code>v40</code>) · <code>com.aistudio.vesperafamily.vspxql</code></td></tr>
+          <tr><th>Link tải</th><td><a href="https://github.com/robloxhihi/giadinhviet-app/releases/download/v40/GiaDinhViet.apk">releases/download/v40/GiaDinhViet.apk</a></td></tr>
+          <tr><th>Kích thước</th><td><span data-copy="79829768">79.829.768 byte · 76,1&nbsp;MiB</span></td></tr>
+          <tr><th>SHA-256</th><td><span data-copy="2d49a936d8f6e4676df5d894c50ddc1daf49eb4e651c5b6c7abbb29ba95a905d">2d49a936…95a905d</span> <button class="copy" type="button">sao chép</button></td></tr>
+          <tr><th>SHA-256 đầy đủ</th><td><code class="wrap">2d49a936d8f6e4676df5d894c50ddc1daf49eb4e651c5b6c7abbb29ba95a905d</code></td></tr>
+          <tr><th>SHA-1</th><td><code class="wrap">cebcc1d2c4720a42895c41f3613d1993892167ab</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="verify" class="panel">
+    <h2>Đối chiếu file bạn đã tải</h2>
+    <p class="muted">Chọn <code>GiaDinhViet.apk</code> trong Downloads. Trình duyệt tự tính SHA-1/SHA-256 bằng Web Crypto và so với giá trị công bố — file không rời khỏi máy bạn.</p>
+    <input type="file" id="apkfile" accept=".apk,application/vnd.android.package-archive">
+    <div id="verify-out" role="status" aria-live="polite" class="verdict idle">Chờ chọn file…</div>
+    <p class="muted small">File 76&nbsp;MiB nên phép tính mất vài giây tới vài chục giây tùy máy. Hãy lấy giá trị gốc từ chính trang release.</p>
+  </section>
+
+  <section id="install">
+    <h2>Cài đặt</h2>
+    <ol class="steps">
+      <li><b>Tải file</b> bằng liên kết đã mở khoá, mở trực tiếp từ Chrome hoặc Files.</li>
+      <li><b>Cho phép cài từ nguồn chưa biết</b> khi Android hỏi — chỉ cho app đang mở file.</li>
+      <li><b>Cài.</b> Báo <code>INSTALL_FAILED_UPDATE_INCOMPATIBLE</code> thì gỡ bản cũ rồi cài lại.</li>
+      <li><b>Bật bộ chặn:</b> Cài đặt → Trợ năng → Gia Đình Việt → bật. Không có quyền này app chỉ nhắc.</li>
+      <li><b>Cấp quyền dùng ứng dụng</b> (Usage Access), rồi đăng nhập Google và ghép nối bằng mã pairing.</li>
+    </ol>
+  </section>
+
+  <section id="mapsrc" class="panel">
+    <h2>Nền bản đồ: đo rồi mới chọn</h2>
+    <p class="muted">Thẻ vị trí dùng osmdroid, tải tile ảnh gốc. 9 ô dưới đây là tile <em>thật</em> mà app xin, không phải ảnh chụp sẵn.</p>
+    <div class="tiles-demo">
+      <form id="tile-form" autocomplete="off">
+        <div class="fields">
+          <label>Vĩ độ <input type="number" id="t-lat" value="14.45722" step="0.00001" min="-85" max="85"></label>
+          <label>Kinh độ <input type="number" id="t-lon" value="107.91763" step="0.00001" min="-180" max="180"></label>
+          <label>Zoom
+            <select id="t-z">
+              <option value="16">z16</option><option value="17">z17</option><option value="18">z18</option>
+              <option value="19" selected>z19</option><option value="20">z20</option><option value="21">z21</option>
+            </select>
+          </label>
+          <label>Nền
+            <select id="t-src">
+              <option value="g-y" selected>Google vệ tinh + tên đường</option>
+              <option value="g-s">Google vệ tinh</option>
+              <option value="g-m">Google đường phố</option>
+              <option value="esri">Esri World Imagery</option>
+            </select>
+          </label>
+        </div>
+      </form>
+      <div id="tiles" class="tiles" aria-live="polite"></div>
+      <p class="muted small" id="tiles-note">Đang tải 9 tile 256×256 px.</p>
+    </div>
+  </section>
+
+  <section id="limits">
+    <h2>Giới hạn nên biết trước khi dùng</h2>
+    <ul class="plain">
+      <li><b>Bản debug.</b> Keystore debug commit công khai, ai clone repo cũng build ra APK cùng chữ ký.</li>
+      <li><b>Danh sách tích là app trên máy người đang mở.</b> App của con mà phụ huynh không cài thì không tích trực tiếp được.</li>
+      <li><b>Chặn mềm bằng AccessibilityService</b> — Android có thể ngủ giấc hoặc người dùng tắt; đủ giới hạn trong nhà, không chống phá khoá.</li>
+      <li><b>Vị trí chỉ đúng khi máy con mở định vị và có mạng.</b></li>
+    </ul>
+  </section>
 </main>
 
-<footer class="site-footer">
-  <div class="foot-inner">
-    <p><strong>Gia Đình Việt</strong> — sản phẩm dự thi khoa học kĩ thuật</p>
-    <p>
-      <a href="https://github.com/robloxhihi/giadinhviet-web" id="link-repo">Mã nguồn</a> ·
-      <a href="https://github.com/robloxhihi/giadinhviet-web/releases" id="link-release">Bản phát hành</a> ·
-      <a href="#quyen">Quyền ứng dụng</a>
-    </p>
-  </div>
+<footer>
+  <span>Gia Đình Việt · APK đăng tại GitHub Releases</span>
+  <a href="https://github.com/robloxhihi/giadinhviet-app">robloxhihi/giadinhviet-app</a>
 </footer>
 
 <script src="assets/js/main.js"></script>
