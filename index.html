@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Gia Đình Việt — app chặn ứng dụng & giám sát học tập</title>
-<meta name="description" content="Gia Đình Việt: phụ huynh ghép máy con, chặn app, đặt khung giờ và hạn mức phút, xem vị trí, thống kê dùng thật và trợ lý AI đọc đúng số liệu máy. Tải APK 48.0 kèm SHA-256 đối chiếu.">
+<meta name="description" content="Gia Đình Việt: phụ huynh ghép máy con, chặn app, đặt khung giờ và hạn mức phút, xem vị trí, thống kê dùng thật và trợ lý AI đọc đúng số liệu máy. Tải APK 49.0 kèm SHA-256 đối chiếu.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;800&display=swap" rel="stylesheet">
@@ -38,7 +38,7 @@
 <main id="top">
   <section class="hero">
     <div class="hero-copy">
-      <p class="eyebrow">Bản 48.0 · Android 7.0 trở lên · build debug</p>
+      <p class="eyebrow">Bản 49.0 · Android 7.0 trở lên · build debug</p>
       <h1>Nội quy dùng điện thoại,<br>hai phía cùng duyệt.</h1>
       <p class="lede">Phụ huynh ghép máy con qua Firebase. Danh sách chặn, khung giờ và hạn mức phút phải được bên kia bấm <em>Đồng ý</em> mới có hiệu lực; mọi lần đổi đều ghi vào nhật ký không sửa được.</p>
       <ul class="chips">
@@ -71,11 +71,11 @@
       <img src="/assets/img/app-screens-dark.png" alt="Lưới 9 màn hình giao diện ứng dụng Gia Đình Việt (nền tối)" loading="lazy" width="1024" height="1024">
     </figure>
 
-    <h3 class="newhead">Mới ở bản 48.0</h3>
+    <h3 class="newhead">Mới ở bản 49.0</h3>
     <ul class="plain">
-      <li>Bảng model AI còn toàn bộ model miễn phí đã đo thật — gỡ hai model trả phí.</li>
-      <li>Màn trợ lý AI gọn hơn: bỏ khối trạng thái khoá và nút gỡ khoá.</li>
-      <li>Mở app nhẹ hơn: nền không còn vẽ lại mọi khung hình, ảnh nền giải mã ngoài luồng chính.</li>
+      <li>Giờ học tập trung do ba mẹ bật từ xa: bấm 25′, 45′ hoặc 60′ trên máy mình, máy con chặn app ngay trong phiên — không cần con xác nhận.</li>
+      <li>Giờ học thắng cả nội quy đang tắt hoặc đang ở chế độ “chỉ nhắc”; app nằm trong danh sách miễn chặn vẫn chạy được, và luôn còn đường gọi khẩn cấp.</li>
+      <li>Đã kiểm chứng thật trên máy giả lập: Zalo và Facebook bị kéo về Home kèm dòng “Đang giờ học tập trung do … bắt đầu — còn 33 phút”; bấm “Kết thúc giờ học sớm” thì hai app mở lại bình thường.</li>
     </ul>
   </section>
 
@@ -101,6 +101,11 @@
           <label class="sw"><input type="checkbox" id="allowed"> Có trong danh sách miễn chặn</label>
           <label class="sw"><input type="checkbox" id="active" checked> Nội quy đang bật</label>
           <label class="sw"><input type="checkbox" id="reminder"> Chỉ nhắc, không chặn</label>
+          <label class="sw"><input type="checkbox" id="study"> Ba mẹ vừa bật giờ học tập trung</label>
+        </div>
+        <div class="fields">
+          <label>Còn lại <input type="number" id="studymin" value="33" min="0" max="240" step="1"> phút</label>
+          <label>Do ai bắt đầu <input type="text" id="studyby" value="Mẹ" spellcheck="false"></label>
         </div>
         <div class="fields">
           <label>Giờ hiện tại <input type="time" id="now" value="19:30"></label>
@@ -125,7 +130,7 @@
       <article><h3>Một bản ghi mỗi ngày</h3><p>Phút dùng, hạn mức đã duyệt, số lần bị kéo về Home, app dùng nhiều nhất, tỉ lệ theo nhóm, điểm vị trí, cảm xúc trẻ tự đánh dấu. Kèm 7 ngày trước để thấy xu hướng.</p></article>
       <article><h3>Đếm lúc chặn thật</h3><p>Bộ đếm tăng đúng khi AccessibilityService gọi <code>GLOBAL_ACTION_HOME</code> thành công — không lấy từ danh sách app bị tích.</p></article>
       <article><h3>Dữ liệu ở lại trong nhà</h3><p>Bản ghi nằm trong SharedPreferences của máy, không đẩy lên Firestore. Nội dung gửi đi là số liệu gộp.</p></article>
-      <article><h3>Mỗi nhà cung cấp một khoá</h3><p>Gemini (AI Studio) và ba model qua OpenRouter; mỗi khoá nhập một lần trên máy, có thể tiêm lúc build qua Repository Secret. Không khoá nào nằm trong repo.</p></article>
+      <article><h3>Chỉ còn model miễn phí</h3><p>Bảng model đã gỡ hai model trả phí, còn lại Gemini và bốn model miễn phí qua Orcarouter. Bản cài kèm sẵn khoá miễn phí; không có ô nhập khoá trong app nữa.</p></article>
     </div>
     <p class="muted small">Cần Internet. Bản cài có sẵn khoá model miễn phí để mở chat là chạy; ai muốn dùng khoá riêng thì nhập trong app. Khoá nằm trong APK thì người biết gỡ APK có thể lấy được — đó là rủi ro thật, không phải điều gì được giấu. Câu trả lời là gợi ý tham khảo, không phải chẩn đoán.</p>
   </section>
@@ -141,8 +146,8 @@
     </div>
 
     <div class="hero-cta dl-locked" hidden>
-      <a class="cta" href="https://github.com/robloxhihi/giadinhviet-app/releases/download/v48/GiaDinhViet.apk" download>Tải GiaDinhViet.apk <span>76,2&nbsp;MiB</span></a>
-      <a class="ghost" href="https://github.com/robloxhihi/giadinhviet-app/releases/tag/v48">Trang release</a>
+      <a class="cta" href="https://github.com/robloxhihi/giadinhviet-app/releases/download/v49/GiaDinhViet.apk" download>Tải GiaDinhViet.apk <span>76,2&nbsp;MiB</span></a>
+      <a class="ghost" href="https://github.com/robloxhihi/giadinhviet-app/releases/tag/v49">Trang release</a>
       <a class="ghost" href="https://github.com/robloxhihi/giadinhviet-app">Mã nguồn</a>
     </div>
 
@@ -150,14 +155,14 @@
 
     <div class="table-wrap">
       <table>
-        <caption class="sr-only">Thông tin bản 48.0</caption>
+        <caption class="sr-only">Thông tin bản 49.0</caption>
         <tbody>
-          <tr><th>Phiên bản</th><td><code>48.0</code> (tag <code>v48</code>) · <code>com.aistudio.vesperafamily.vspxql</code></td></tr>
-          <tr><th>Link tải</th><td><a href="https://github.com/robloxhihi/giadinhviet-app/releases/download/v48/GiaDinhViet.apk">releases/download/v48/GiaDinhViet.apk</a></td></tr>
-          <tr><th>Kích thước</th><td><span data-copy="79862672">79.862.672 byte · 76,2&nbsp;MiB</span></td></tr>
-          <tr><th>SHA-256</th><td><span data-copy="475923379866e9062e4d232dd580473f228313841164f57cb220f659d9159cf3">47592337…d9159cf3</span> <button class="copy" type="button">sao chép</button></td></tr>
-          <tr><th>SHA-256 đầy đủ</th><td><code class="wrap">475923379866e9062e4d232dd580473f228313841164f57cb220f659d9159cf3</code></td></tr>
-          <tr><th>SHA-1</th><td><code class="wrap">85a9a400499c6cb52057f7d9e51bd17238eab148</code></td></tr>
+          <tr><th>Phiên bản</th><td><code>49.0</code> (tag <code>v49</code>) · <code>com.aistudio.vesperafamily.vspxql</code></td></tr>
+          <tr><th>Link tải</th><td><a href="https://github.com/robloxhihi/giadinhviet-app/releases/download/v49/GiaDinhViet.apk">releases/download/v49/GiaDinhViet.apk</a></td></tr>
+          <tr><th>Kích thước</th><td><span data-copy="79879056">79.879.056 byte · 76,2&nbsp;MiB</span></td></tr>
+          <tr><th>SHA-256</th><td><span data-copy="ca8299469d589c259a22321764e796a3208af5ea2b6812e8277863e15e4e1a8e">ca829946…5e4e1a8e</span> <button class="copy" type="button">sao chép</button></td></tr>
+          <tr><th>SHA-256 đầy đủ</th><td><code class="wrap">ca8299469d589c259a22321764e796a3208af5ea2b6812e8277863e15e4e1a8e</code></td></tr>
+          <tr><th>SHA-1</th><td><code class="wrap">68acbced5938de091beae05c1f4cc06f6b879f1d</code></td></tr>
         </tbody>
       </table>
     </div>

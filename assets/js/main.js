@@ -10,11 +10,13 @@ const NEVER_BLOCKED_EXACT = new Set([
 ]);
 const SELF_PACKAGE = "com.aistudio.vesperafamily.vspxql";
 
-// Bản 40.0 — số liệu đã đối chiếu khớp digest của asset trên GitHub Release.
+// Bản 49.0 — số liệu đã đối chiếu khớp digest của asset trên GitHub Release
+// (api.github.com/.../releases/tags/v49 → assets[0].digest).
 const EXPECTED = {
-  bytes: 79829768,
-  sha256: "2d49a936d8f6e4676df5d894c50ddc1daf49eb4e651c5b6c7abbb29ba95a905d",
-  sha1: "cebcc1d2c4720a42895c41f3613d1993892167ab"
+  version: "49.0",
+  bytes: 79879056,
+  sha256: "ca8299469d589c259a22321764e796a3208af5ea2b6812e8277863e15e4e1a8e",
+  sha1: "68acbced5938de091beae05c1f4cc06f6b879f1d"
 };
 
 // Site key Turnstile là giá trị CÔNG KHAI, an toàn khi nằm ở frontend.
@@ -49,6 +51,10 @@ function decide(s) {
   if (!s.pkg.trim()) return { blocked: false, reason: "Không có tên gói nên không có gì để chặn." };
   if (s.pkg.trim().toLowerCase() === SELF_PACKAGE) return { blocked: false, reason: "Đây là app Gia Đình Việt: app không tự chặn chính mình." };
   if (isNeverBlocked(s.pkg.trim())) return { blocked: false, reason: "Nhóm không bao giờ bị chặn (hệ thống, launcher, bàn phím, gọi khẩn cấp, CH Play, Play Services).", hint: "Dù bạn có tích nhầm, app vẫn chạy được — để người dùng không mất đường thoát." };
+  // Lớp giờ học tập trung nằm TRƯỚC mọi kiểm tra khác, sau nhóm "không bao giờ
+  // chặn". Đây là phiên ba mẹ bật từ xa nên nó phải thắng dù nội quy đang tắt
+  // hoặc đang ở chế độ chỉ nhắc nhở — không thể để nội quy "chỉ nhắc" che mất.
+  if (s.study && !s.allowed) return { blocked: true, layer: "Lớp 0 — giờ học tập trung", reason: "Đang giờ học tập trung" + (s.studyBy ? " do " + s.studyBy + " bắt đầu" : "") + " — còn " + (s.studyMin || 0) + " phút.", hint: "Ba mẹ bật từ xa trên máy con — giờ học vẫn chặn dù nội quy đang tắt hoặc ở chế độ chỉ nhắc nhở." };
   if (!s.active) return { blocked: false, reason: "Nội quy đang tắt nên không chặn.", hint: "Bật nội quy trong Cài đặt để luật có hiệu lực." };
   if (s.reminder) return { blocked: false, reason: "Chế độ chỉ nhắc nhở: hiển thị cảnh báo nhưng không chặn.", hint: "Tắt “chỉ nhắc nhở” để chặn thật." };
   if (!dayScheduled(s.days, s.today)) return { blocked: false, reason: `Hôm nay là ${s.today}, không nằm trong ngày áp dụng của nội quy.` };
@@ -80,6 +86,9 @@ function bindLab() {
       end: toMin(el("end").value || "23:59"),
       used: Number(el("used").value) || 0,
       cap: Number(el("cap").value) || 0,
+      study: el("study") ? el("study").checked : false,
+      studyMin: Number(el("studymin") ? el("studymin").value : 0) || 0,
+      studyBy: el("studyby") ? el("studyby").value.trim() : "",
       days: el("days").value,
       today
     });
@@ -133,7 +142,7 @@ function bindVerify() {
       const secs = ((performance.now() - t0) / 1000).toFixed(1);
       out.className = "verdict " + (ok ? "allow" : "block");
       out.textContent = ok
-        ? `KHỚP. File của bạn là đúng bản 40.0 chính thức (${secs} giây).`
+        ? `KHỚP. File của bạn là đúng bản ${EXPECTED.version} chính thức (${secs} giây).`
         : "KHÔNG KHỚP. File này không phải bản công bố ở trên — dùng lại từ liên kết release.";
       const lines = [
         `Kích thước: ${fmt(file.size)} / ${fmt(EXPECTED.bytes)} byte ${sizeOk ? "khớp" : "lệch"}`,
