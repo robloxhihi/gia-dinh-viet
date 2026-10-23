@@ -169,7 +169,6 @@ function bindTurnstile() {
   const locked = [...document.querySelectorAll(".dl-locked")];
 
   const setIdle = (msg) => { out.className = "gate-out idle"; out.textContent = msg; };
-  const setErr = (msg) => { out.className = "gate-out block"; out.textContent = msg; };
   const reveal = (msg) => {
     locked.forEach((b) => { b.hidden = false; });
     out.className = "gate-out allow";
@@ -190,11 +189,14 @@ function bindTurnstile() {
         theme: "light",
         appearance: "always",
         callback: () => reveal("Đã qua Cloudflare. Không cần key. Liên kết tải ở dưới đã hiện."),
-        "error-callback": () => setErr("Không tải được widget Cloudflare. Kiểm tra kết nối rồi tải lại trang."),
+        // Fail-open: widget bi tu choi (sitekey sai/ten mien chua duoc phep) ma
+        // an link thi nguoi that khong tai duoc file. Lien ket von cong khai tren
+        // GitHub Release, nen de hu loi con hon la chan het nguoi dung.
+        "error-callback": () => reveal("Xác thực Cloudflare đang lỗi nên trang hiện liên kết thẳng — không cần key. File nằm trên GitHub Release công khai."),
         "expired-callback": () => setIdle("Phiên xác thực hết hạn — xác thực lại để hiện liên kết tải.")
       });
     } catch (e) {
-      setErr("Widget Cloudflare lỗi trên trình duyệt này. Tải lại trang hoặc mở bằng Chrome.");
+      reveal("Xác thực Cloudflare lỗi trên trình duyệt này nên trang hiện liên kết thẳng — không cần key.");
     }
   };
   render();
