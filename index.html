@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Gia Đình Việt — app chặn ứng dụng & giám sát học tập</title>
-<meta name="description" content="Gia Đình Việt: phụ huynh ghép máy con, chặn app, đặt khung giờ và hạn mức phút, xem vị trí, thống kê dùng thật và trợ lý AI đọc đúng số liệu máy. Tải APK 40.0 kèm SHA-256 đối chiếu.">
+<meta name="description" content="Gia Đình Việt: phụ huynh ghép máy con, chặn app, đặt khung giờ và hạn mức phút, xem vị trí, thống kê dùng thật và trợ lý AI đọc đúng số liệu máy. Tải APK 47.0 kèm SHA-256 đối chiếu.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="/assets/css/style.css">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='13' fill='%23F4EEFB'/><circle cx='20' cy='12' r='6' fill='%23B5731A'/><circle cx='17' cy='11' r='5' fill='%23F4EEFB'/><circle cx='9' cy='21' r='1.6' fill='%2317795A'/><circle cx='13' cy='24' r='1.1' fill='%2317795A'/></svg>">
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
@@ -38,7 +38,7 @@
 <main id="top">
   <section class="hero">
     <div class="hero-copy">
-      <p class="eyebrow">Bản 40.0 · Android 7.0 trở lên · build debug</p>
+      <p class="eyebrow">Bản 47.0 · Android 7.0 trở lên · build debug</p>
       <h1>Nội quy dùng điện thoại,<br>hai phía cùng duyệt.</h1>
       <p class="lede">Phụ huynh ghép máy con qua Firebase. Danh sách chặn, khung giờ và hạn mức phút phải được bên kia bấm <em>Đồng ý</em> mới có hiệu lực; mọi lần đổi đều ghi vào nhật ký không sửa được.</p>
       <ul class="chips">
@@ -52,7 +52,7 @@
       </div>
     </div>
     <figure class="hero-shot">
-      <img src="assets/img/app-screens-light.png" alt="Lưới 9 màn hình giao diện ứng dụng Gia Đình Việt (nền sáng)" loading="lazy" width="1024" height="1024">
+      <img src="/assets/img/app-screens-light.png" alt="Lưới 9 màn hình giao diện ứng dụng Gia Đình Việt (nền sáng)" loading="lazy" width="1024" height="1024">
     </figure>
   </section>
 
@@ -68,15 +68,14 @@
     </div>
 
     <figure class="shot-band">
-      <img src="assets/img/app-screens-dark.png" alt="Lưới 9 màn hình giao diện ứng dụng Gia Đình Việt (nền tối)" loading="lazy" width="1024" height="1024">
+      <img src="/assets/img/app-screens-dark.png" alt="Lưới 9 màn hình giao diện ứng dụng Gia Đình Việt (nền tối)" loading="lazy" width="1024" height="1024">
     </figure>
 
-    <h3 class="newhead">Mới ở bản 40.0</h3>
+    <h3 class="newhead">Mới ở bản 47.0</h3>
     <ul class="plain">
-      <li>Bỏ màu ngọc lam, chỉ còn giao diện tối/sáng.</li>
-      <li>Khung giờ chặn nhập bằng số thay vì chấm giờ.</li>
-      <li>Phụ huynh chặn app áp dụng ngay, không cần con duyệt.</li>
-      <li>Thêm nút gỡ khoá AI đã nhập.</li>
+      <li>Mở app nhanh hơn hẳn: bỏ hiệu ứng sao nhấp nháy chạy mọi khung hình, nền giải mã ngoài luồng chính.</li>
+      <li>Trợ lý AI chỉ xuống dòng đánh số khi bạn yêu cầu phân tích; hỏi thường thì trả lời ngắn như nhắn tin.</li>
+      <li>SOS: bấm tổng đài là gọi, toạ độ gửi SMS về số người thân đã lưu.</li>
     </ul>
   </section>
 
@@ -128,7 +127,7 @@
       <article><h3>Dữ liệu ở lại trong nhà</h3><p>Bản ghi nằm trong SharedPreferences của máy, không đẩy lên Firestore. Nội dung gửi đi là số liệu gộp.</p></article>
       <article><h3>Mỗi nhà cung cấp một khoá</h3><p>Gemini (AI Studio) và ba model qua OpenRouter; mỗi khoá nhập một lần trên máy, có thể tiêm lúc build qua Repository Secret. Không khoá nào nằm trong repo.</p></article>
     </div>
-    <p class="muted small">Cần Internet; mỗi câu hỏi tốn token theo giá nhà cung cấp. Câu trả lời là gợi ý tham khảo, không phải chẩn đoán. Khoá API nằm trong APK giải mã được là rủi ro có thật, nên app mặc định yêu cầu nhập khoá trên máy.</p>
+    <p class="muted small">Cần Internet. Bản cài có sẵn khoá model miễn phí để mở chat là chạy; ai muốn dùng khoá riêng thì nhập trong app. Khoá nằm trong APK thì người biết gỡ APK có thể lấy được — đó là rủi ro thật, không phải điều gì được giấu. Câu trả lời là gợi ý tham khảo, không phải chẩn đoán.</p>
   </section>
 
   <section id="download">
@@ -138,27 +137,27 @@
     <div class="gate" id="dl-gate">
       <p class="gate-title">Xác thực bạn là người trước khi tải</p>
       <div id="turnstile-mount" class="turnstile"></div>
-      <p class="gate-out idle" id="gate-out" role="status" aria-live="polite">Token sẽ được gửi lên máy chủ để Cloudflare kiểm tra. Chỉ khi máy chủ trả “hợp lệ” liên kết tải mới hiện.</p>
+      <p class="gate-out idle" id="gate-out" role="status" aria-live="polite">Tích ô Cloudflare là tải được — không cần key.</p>
     </div>
 
     <div class="hero-cta dl-locked" hidden>
-      <a class="cta" href="https://github.com/robloxhihi/giadinhviet-app/releases/download/v40/GiaDinhViet.apk" download>Tải GiaDinhViet.apk <span>76,1&nbsp;MiB</span></a>
-      <a class="ghost" href="https://github.com/robloxhihi/giadinhviet-app/releases/tag/v40">Trang release</a>
+      <a class="cta" href="https://github.com/robloxhihi/giadinhviet-app/releases/download/v47/GiaDinhViet.apk" download>Tải GiaDinhViet.apk <span>76,2&nbsp;MiB</span></a>
+      <a class="ghost" href="https://github.com/robloxhihi/giadinhviet-app/releases/tag/v47">Trang release</a>
       <a class="ghost" href="https://github.com/robloxhihi/giadinhviet-app">Mã nguồn</a>
     </div>
 
-    <p class="muted small honesty">Đường dẫn APK nằm trên GitHub Release công khai, nên ai biết URL vẫn tới được file. Cloudflare Turnstile chặn bot ở <strong>trang này</strong> — người thật tải qua đường sạch, không quảng cáo; đây là chốt cửa nhà, không phải két sắt.</p>
+    <p class="muted small honesty">File nằm trên GitHub Release công khai. Cloudflare chặn bot ở <strong>trang này</strong> — không phải két sắt.</p>
 
     <div class="table-wrap">
       <table>
-        <caption class="sr-only">Thông tin bản 40.0</caption>
+        <caption class="sr-only">Thông tin bản 47.0</caption>
         <tbody>
-          <tr><th>Phiên bản</th><td><code>40.0</code> (tag <code>v40</code>) · <code>com.aistudio.vesperafamily.vspxql</code></td></tr>
-          <tr><th>Link tải</th><td><a href="https://github.com/robloxhihi/giadinhviet-app/releases/download/v40/GiaDinhViet.apk">releases/download/v40/GiaDinhViet.apk</a></td></tr>
-          <tr><th>Kích thước</th><td><span data-copy="79829768">79.829.768 byte · 76,1&nbsp;MiB</span></td></tr>
-          <tr><th>SHA-256</th><td><span data-copy="2d49a936d8f6e4676df5d894c50ddc1daf49eb4e651c5b6c7abbb29ba95a905d">2d49a936…95a905d</span> <button class="copy" type="button">sao chép</button></td></tr>
-          <tr><th>SHA-256 đầy đủ</th><td><code class="wrap">2d49a936d8f6e4676df5d894c50ddc1daf49eb4e651c5b6c7abbb29ba95a905d</code></td></tr>
-          <tr><th>SHA-1</th><td><code class="wrap">cebcc1d2c4720a42895c41f3613d1993892167ab</code></td></tr>
+          <tr><th>Phiên bản</th><td><code>47.0</code> (tag <code>v47</code>) · <code>com.aistudio.vesperafamily.vspxql</code></td></tr>
+          <tr><th>Link tải</th><td><a href="https://github.com/robloxhihi/giadinhviet-app/releases/download/v47/GiaDinhViet.apk">releases/download/v47/GiaDinhViet.apk</a></td></tr>
+          <tr><th>Kích thước</th><td><span data-copy="79862668">79.862.668 byte · 76,2&nbsp;MiB</span></td></tr>
+          <tr><th>SHA-256</th><td><span data-copy="7b784a7ffc7bf0145c199286f521bc5b6f38813ff0ffa044700d3ae067f17728">7b784a7f…7f17728</span> <button class="copy" type="button">sao chép</button></td></tr>
+          <tr><th>SHA-256 đầy đủ</th><td><code class="wrap">7b784a7ffc7bf0145c199286f521bc5b6f38813ff0ffa044700d3ae067f17728</code></td></tr>
+          <tr><th>SHA-1</th><td><code class="wrap">7e95b3a6114203e10f971f80b42265c342d4b618</code></td></tr>
         </tbody>
       </table>
     </div>
@@ -228,6 +227,6 @@
   <a href="https://github.com/robloxhihi/giadinhviet-app">robloxhihi/giadinhviet-app</a>
 </footer>
 
-<script src="assets/js/main.js"></script>
+<script src="/assets/js/main.js"></script>
 </body>
 </html>

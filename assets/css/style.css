@@ -216,3 +216,9 @@ footer a { color:var(--sky); }
   .hero{grid-template-columns:1fr;gap:24px}
   h1{font-size:1.9rem}
 }
+
+/* Nền CHÍNH của trang = đúng 2 ảnh mẫu chủ tài khoản gửi, giữ nguyên ảnh,
+   không vẽ lại không AI sinh. Lớp phủ mờ bán trong suốt để chữ vẫn đủ tương phản. */
+body { background-image: var(--wall); background-size: cover; background-position: center; background-attachment: fixed; }
+body[data-theme="dream"] { --wall: linear-gradient(rgba(244,238,251,.88), rgba(244,238,251,.94)), url("/img/app-screens-light.png"); }
+body[data-theme="night"]  { --wall: linear-gradient(rgba(4,5,10,.86), rgba(4,5,10,.93)), url("/img/app-screens-dark.png"); }

@@ -20,7 +20,6 @@ const EXPECTED = {
 // Site key Turnstile là giá trị CÔNG KHAI, an toàn khi nằm ở frontend.
 // Khoá bí mật (secret key) KHÔNG nằm ở đây — chỉ máy chủ Functions giữ nó qua env.
 const TURNSTILE_SITE_KEY = "0x4AAAAAAFDsQ5k2jkU1Ei1R";
-const UNLOCK_ENDPOINT = "/functions/v1/app/unlock";
 
 const dayLabel = (d) => ["CN", "T2", "T3", "T4", "T5", "T6", "T7"][d.getDay()];
 const toMin = (v) => { const [h, m] = v.split(":").map(Number); return h * 60 + m; };
@@ -152,15 +151,16 @@ function bindVerify() {
 }
 
 /**
- * Chốt tải bằng Cloudflare Turnstile.
+ * Chốt tải bằng Cloudflare Turnstile — KHONG can key tai.
  *
- * Luồng: widget sinh token -> token được gửi lên endpoint same-origin
- * /functions/v1/app/unlock -> máy chủ Functions gọi siteverify với secret
- * (nằm trong env của Functions, KHÔNG nằm ở đây) -> chỉ khi trả {ok:true}
- * liên kết tải mới hiện.
+ * Yeu cau cua chu tai khoan (2026-10-22): "chi can qua dc cloudflare thi ko can
+ * key de tai nua, bo key nhap moi tai dc khoi web di". Nghia la widget Turnstile
+ * la cong duyet duy nhat: Cloudflare tu sinh token khi nguoi dung qua duoc
+ * chong bot, token do du de mo lien ket tai ngay trong trinh duyet.
  *
- * Không có nhánh "mở khoá phía client" nào: nếu máy chủ báo lỗi hoặc chưa
- * triển khai, liên kết tải ở nguyên trạng thái ẩn.
+ * Giro can thuat: day la chan bot o cua trang, KHONG phai bao mat tuyet doi.
+ * Lien ket GitHub Release van cong khai, nen ai nam duoc URL van toi duoc file.
+ * Copy tren trang noi dung nay thang, khong noi "khoa chat".
  */
 function bindTurnstile() {
   const mount = document.getElementById("turnstile-mount");
@@ -178,39 +178,13 @@ function bindTurnstile() {
     if (first) first.focus();
   };
 
-  const verifyToken = async (token) => {
-    setIdle("Đang gửi token lên máy chủ để Cloudflare xác thực…");
-    let res;
-    try {
-      res = await fetch(UNLOCK_ENDPOINT, {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        credentials: "same-origin",
-        body: JSON.stringify({ token })
-      });
-    } catch (err) {
-      setErr("Không gọi được máy chủ xác thực (endpoint có thể chưa được triển khai). Vì vậy liên kết tải vẫn ẩn — trang không mở khoá một mình ở phía trình duyệt.");
-      return;
-    }
-    let data = null;
-    try { data = await res.json(); } catch { data = null; }
-    if (res.ok && data && data.ok === true) {
-      reveal("Đã xác thực. Liên kết tải bản 40.0 ở dưới đã hiện.");
-    } else {
-      if (window.turnstile && typeof window.turnstile.reset === "function") {
-        try { window.turnstile.reset(mount); } catch { /* bỏ qua */ }
-      }
-      setErr("Cloudflare hoặc máy chủ chưa xác thực được bạn. Hãy xác thực lại.");
-    }
-  };
-
   const render = () => {
     if (!window.turnstile) { setTimeout(render, 200); return; }
     window.turnstile.render(mount, {
       sitekey: TURNSTILE_SITE_KEY,
       theme: "light",
       appearance: "auto",
-      callback: (token) => verifyToken(token),
+      callback: () => reveal("Đã qua Cloudflare. Không cần key. Liên kết tải ở dưới đã hiện."),
       "error-callback": () => setErr("Không tải được widget Cloudflare. Kiểm tra kết nối rồi tải lại trang."),
       "expired-callback": () => setIdle("Phiên xác thực hết hạn — xác thực lại để hiện liên kết tải.")
     });
@@ -295,17 +269,43 @@ function bindTiles() {
     const cy = Math.min(n - 1, Math.max(0, Math.floor(fy)));
     const centerUrl = build(z, cx, cy);
 
+    const warn = srcIn.value === "esri" && z >= 19
+      ? " Lưu ý: từ z19 Esri trả ô xám ở hầu hết nông thôn VN."
+      : "";
+
     wrap.className = "tiles";
     wrap.textContent = "";
     let failed = 0;
+    let loaded = 0;
+    // Ban dau ghi "9 ô đang hiển thị" ngay khi moi tao the <img>: luc vao day
+    // thi chua co tile nao ve, nguoi dung thay 9 o trong va tuong demo chet.
+    // Dem that bang su kien load/error roi moi kheng dinh.
+    const settle = () => {
+      note.textContent = "";
+      if (loaded === 9) {
+        note.append(`9 ô 256×256 px đang hiển thị tile thật tại z${z}, tile giữa = ${cx}/${cy}. `);
+      } else if (loaded === 0 && failed >= 9) {
+        note.append("Không tile nào tải được từ mạng của bạn.");
+      } else if (loaded === 0) {
+        note.append("Đang tải 9 tile 256×256 px…");
+      } else {
+        note.append(`${loaded}/9 ô đã tải được tile thật tại z${z}` +
+          (failed ? `, ${failed} ô lỗi.` : " — vài ô chưa về."));
+      }
+      const a = link(centerUrl, centerUrl);
+      note.append(document.createTextNode(" "), a);
+      if (warn) note.append(warn);
+    };
+    settle();
+
     for (let dy = -1; dy <= 1; dy++) {
       for (let dx = -1; dx <= 1; dx++) {
         const tx = cx + dx, ty = cy + dy;
         if (tx < 0 || ty < 0 || tx >= n || ty >= n) { failed++; continue; }
         const img = document.createElement("img");
         img.alt = "";
-        img.loading = "lazy";
-        img.addEventListener("error", () => { failed++; });
+        img.addEventListener("load", () => { loaded++; settle(); });
+        img.addEventListener("error", () => { failed++; settle(); });
         img.src = build(z, tx, ty);
         wrap.appendChild(img);
       }
@@ -315,18 +315,6 @@ function bindTiles() {
     pin.style.left = `${(((fx - (cx - 1)) / 3) * 100).toFixed(2)}%`;
     pin.style.top = `${(((fy - (cy - 1)) / 3) * 100).toFixed(2)}%`;
     wrap.appendChild(pin);
-
-    const warn = srcIn.value === "esri" && z >= 19
-      ? " Lưu ý: từ z19 Esri trả ô xám ở hầu hết nông thôn VN."
-      : "";
-    note.textContent = "";
-    note.append(
-      failed === 9
-        ? "Không tile nào tải được từ mạng của bạn."
-        : `9 ô 256×256 px đang hiển thị tile thật tại z${z}, tile giữa = ${cx}/${cy}. `,
-      link(centerUrl, centerUrl)
-    );
-    if (warn) note.append(warn);
   };
 
   const link = (text, href) => {
