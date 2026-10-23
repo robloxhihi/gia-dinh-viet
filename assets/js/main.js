@@ -180,14 +180,22 @@ function bindTurnstile() {
 
   const render = () => {
     if (!window.turnstile) { setTimeout(render, 200); return; }
-    window.turnstile.render(mount, {
-      sitekey: TURNSTILE_SITE_KEY,
-      theme: "light",
-      appearance: "auto",
-      callback: () => reveal("Đã qua Cloudflare. Không cần key. Liên kết tải ở dưới đã hiện."),
-      "error-callback": () => setErr("Không tải được widget Cloudflare. Kiểm tra kết nối rồi tải lại trang."),
-      "expired-callback": () => setIdle("Phiên xác thực hết hạn — xác thực lại để hiện liên kết tải.")
-    });
+    // 'auto' khong phai gia tri hop le cua Turnstile (chi: always | execute |
+    // interaction-only). Tram loi truoc day lam script chet giua chung, khien
+    // lien ket tai van an va demo map khong chay. Go try/catch de loi cua ben
+    // thu ba khong duoc giet phan con lai cua trang.
+    try {
+      window.turnstile.render(mount, {
+        sitekey: TURNSTILE_SITE_KEY,
+        theme: "light",
+        appearance: "always",
+        callback: () => reveal("Đã qua Cloudflare. Không cần key. Liên kết tải ở dưới đã hiện."),
+        "error-callback": () => setErr("Không tải được widget Cloudflare. Kiểm tra kết nối rồi tải lại trang."),
+        "expired-callback": () => setIdle("Phiên xác thực hết hạn — xác thực lại để hiện liên kết tải.")
+      });
+    } catch (e) {
+      setErr("Widget Cloudflare lỗi trên trình duyệt này. Tải lại trang hoặc mở bằng Chrome.");
+    }
   };
   render();
 }
@@ -328,9 +336,15 @@ function bindTiles() {
   render();
 }
 
-bindTheme();
-bindTurnstile();
-bindLab();
-bindVerify();
-bindCopy();
-bindTiles();
+// Moi binder di qua mot vo try/catch rieng. Truoc day loi nem ra tu widget
+// Cloudflare lam toan bo script chet giua chung va demo ban do khong chay.
+function safe(name, fn) {
+  try { fn(); } catch (e) { console.error(name + " that bai:", e); }
+}
+
+safe("theme", bindTheme);
+safe("tiles", bindTiles);
+safe("lab", bindLab);
+safe("verify", bindVerify);
+safe("copy", bindCopy);
+safe("turnstile", bindTurnstile);
