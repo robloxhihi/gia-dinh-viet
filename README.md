@@ -7,46 +7,32 @@ Trang tĩnh giới thiệu và tải bản cài đặt cho ứng dụng Android 
 > orchestrator publish. Repo này **không** bật GitHub Pages và **không** chứa APK,
 > token hay key nào.
 
-## Bản đang phát hành: 49.0
+## Bản đang phát hành: 69.9
 
 | Hạng mục | Giá trị |
 |---|---|
-| Link tải | `https://github.com/robloxhihi/giadinhviet-app/releases/download/v49/GiaDinhViet.apk` |
-| Kích thước | `79879056` byte = **76,2 MiB** |
-| SHA-256 | `ca8299469d589c259a22321764e796a3208af5ea2b6812e8277863e15e4e1a8e` |
-| SHA-1 | `68acbced5938de091beae05c1f4cc06f6b879f1d` |
+| Link tải | `https://github.com/robloxhihi/giadinhviet-app/releases/download/v69.9/GiaDinhViet.apk` |
+| Kích thước | `80010184` byte = **76,3 MiB** |
+| SHA-256 | `e92523d68e1569fe3840eea042e51d4a631d36146d3f1c76270d8c1f74a6b2bc` |
+| SHA-1 | `7593bbd94d11aa58d3ad19326fb07be04c445d24` |
 | Package | `com.aistudio.vesperafamily.vspxql` |
 | Chữ ký (debug keystore) | SHA-1 `AB:F2:F6:49:CB:02:29:63:DE:77:96:FC:FA:EB:2B:7C:85:94:07:E4` |
 
-Hash đã đối chiếu khớp `digest` của asset trên GitHub Release (`api.github.com/…/releases/tags/v49`
-trả về đúng `sha256:ca8299469d589c259a22321764e796a3208af5ea2b6812e8277863e15e4e1a8e`, 79.879.056 byte).
+Hash đã đối chiếu bằng `certutil` trên file tải từ GitHub Release `v69.9`, khớp giá trị công bố
+(`api.github.com/…/releases/tags/v69.9` → `assets[0].digest`, 80.010.184 byte).
 
-**Mới ở 49.0 — giờ học tập trung do ba mẹ bật từ xa.** Ba mẹ bấm 25′/45′/60′ trên máy mình;
-app ghi ba cột phẳng `studyUntil` / `studyByName` / `studyStartedAt` vào document
-`pairings/{id}`, máy con nghe chính document đó trong `AppBlockerService` và chặn mọi app
-ngoài danh sách miễn chặn cho tới hết phiên. Phiên học được xét **trước** cổng lịch, nên nó
-thắng cả khi nội quy đang tắt hoặc đang ở chế độ "chỉ nhắc". Chọn `pairings/{id}` (thay vì
-`agreements`) vì hai lý do: không phải qua lượt duyệt của con, và quyền đọc/ghi document đó
-đã có trong rules đang chạy trên production — tính năng này ship được ngay, không chờ deploy
-rules mới.
+**Mới ở 69.9 — một lô sửa theo phản hồi người dùng.**
+- *Vị trí hai chiều:* máy con cũng đọc được vị trí thật của mẹ, không còn chỉ một chiều mẹ xem con.
+- *Bản đồ hết "bay cả cây":* `LocationJumpGuard` (lớp lọc thuần, có unit test) bỏ phiếu sai số lớn chen giữa và phiếu nhảy chưa xác nhận; camera bám theo tới mức zoom theo dõi khi con di chuyển thật.
+- *Máy mẹ thấy máy con:* "Đang dùng: <app>" + thống kê dùng app của con hiện trên trang chủ.
+- *Một chiều bị khoá:* phụ huynh tự làm trắng số liệu app của mình ở **cả hai** cửa đăng telemetry (service + ViewModel), nên máy con không thấy mẹ dùng gì; `updateBlockRules` chặn role CHILD nên máy con không đặt được nội quy.
+- *Pin trung thực:* hiển thị mức pin thật, chỉ báo sạc khi `isCharging` thật, in "—" khi máy không đọc được pin (notification cũng nói "chưa đọc được" thay vì "0%").
 
-Kiểm chứng thật trên BlueStacks ngày 23-10-2026 (bản 49.0, bật Trợ năng qua đúng đường dẫn
-trong app):
+**Đã chứng minh:** `:app:testDebugUnitTest` trên GitHub Actions **xanh** rồi mới assemble — gồm `LocationJumpGuardTest` (9 case logic chống nhảy) và `TelemetryPrivacyBatteryRegressionTest` (6 test nguồn giữ #124/#126/#127/#110). SHA-256/SHA-1 ở bảng trên đã đối chiếu **khớp** `assets[0].digest` của release `v69.9`.
 
-```
-16:15:39 I/AppBlockerService: Phien hoc dang chay den 1792749066601 (boi 'qa.bluestacks')
-16:15:39 I/AppBlockerService: Lich: isReminderOnly=true blocked=6
-16:17:19 I/AppBlockerService: Chan com.zing.zalo (ve Home = true) — Đang giờ học tập trung do qa.bluestacks bắt đầu — còn 33 phút.
-16:18:04 I/AppBlockerService: Chan com.facebook.katana (ve Home = true) — Đang giờ học tập trung do qa.bluestacks bắt đầu — còn 33 phút.
-16:19:39 I/AppBlockerService: Khong co phien hoc dang chay      <- bam "Ket thuc gio hoc som"
-```
+**Chưa làm (nói thẳng):** chưa mục-rồi-on-device vòng vị trí hai chiều, hiệu quả thật của `LocationJumpGuard` trên GPS sống, và card "Đang dùng" trên máy ghép thật — cần cài `GiaDinhViet.apk` 69.9 lên BlueStacks, bắt cặp phụ huynh↔con để xác nhận trực tiếp.
 
-Sau dòng cuối, mở lại Zalo thì `mCurrentFocus` nằm ở `com.zing.zalo` — hết chặn, đúng ý.
-`isReminderOnly=true` mà vẫn chặn là bằng chứng lớp giờ học nằm trên cổng "chỉ nhắc".
-
-**Chưa kiểm chứng trên máy:** nhánh hiển thị *chế độ xem* của card giờ học (máy con chỉ đọc,
-không có nút) — tài khoản QA `con.testing@giadinhviet.vn` đang mang role PARENT nên chưa đóng
-vai máy con được. Luật miễn chặn và hết hạn phiên mới chỉ có đơn vị test (10 test mới, CI xanh).
+Lịch sử: **bản 49.0** thêm giờ học tập trung ba mẹ bật từ xa (ghi `studyUntil`/`studyByName`/`studyStartedAt` vào `pairings/{id}`, máy con chặn qua `AppBlockerService`; kiểm chứng BlueStacks 23-10-2026: Zalo + Facebook bị kéo về Home khi đang phiên, mở lại bình thường khi bấm "Kết thúc giờ học sớm").
 
 Bản 48.0: bảng model AI chỉ còn model miễn phí đã đo thật (gỡ DeepSeek V4 Flash và GLM 5.3
 Flash bản trả phí); bỏ khối trạng thái khoá + nút "Gỡ khoá đã nhập" trên màn trợ lý AI.
@@ -61,7 +47,7 @@ gia-dinh-viet/
   index.html
   assets/
     css/style.css
-    js/main.js            <- EXPECTED = số liệu bản 49.0; luồng mở khoá tải
+    js/main.js            <- EXPECTED = số liệu bản 69.9; luồng mở khoá tải
     img/app-screens-light.png   <- mockup nền sáng, ảnh do tác giả cung cấp, KHÔNG sửa
     img/app-screens-dark.png    <- mockup nền tối, ảnh do tác giả cung cấp, KHÔNG sửa
   functions/
@@ -120,7 +106,7 @@ push `main` → chạy unit test + `assembleDebug`; đẩy tag `v*` → tạo Re
 Lấy SHA-256 từ API mà không cần tải file:
 
 ```bash
-curl -s https://api.github.com/repos/robloxhihi/giadinhviet-app/releases/tags/v49 \
+curl -s https://api.github.com/repos/robloxhihi/giadinhviet-app/releases/tags/v69.9 \
   | jq -r '.assets[0].digest'
 ```
 

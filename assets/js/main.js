@@ -10,13 +10,13 @@ const NEVER_BLOCKED_EXACT = new Set([
 ]);
 const SELF_PACKAGE = "com.aistudio.vesperafamily.vspxql";
 
-// Bản 49.0 — số liệu đã đối chiếu khớp digest của asset trên GitHub Release
-// (api.github.com/.../releases/tags/v49 → assets[0].digest).
+// Bản 69.9 — số liệu đã đối chiếu khớp digest của asset trên GitHub Release
+// (api.github.com/.../releases/tags/v69.9 → assets[0].digest).
 const EXPECTED = {
-  version: "49.0",
-  bytes: 79879056,
-  sha256: "ca8299469d589c259a22321764e796a3208af5ea2b6812e8277863e15e4e1a8e",
-  sha1: "68acbced5938de091beae05c1f4cc06f6b879f1d"
+  version: "69.9",
+  bytes: 80010184,
+  sha256: "e92523d68e1569fe3840eea042e51d4a631d36146d3f1c76270d8c1f74a6b2bc",
+  sha1: "7593bbd94d11aa58d3ad19326fb07be04c445d24"
 };
 
 // Site key Turnstile là giá trị CÔNG KHAI, an toàn khi nằm ở frontend.
