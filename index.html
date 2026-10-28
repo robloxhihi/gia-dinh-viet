@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Gia Đình Việt — app chặn ứng dụng & giám sát học tập</title>
-<meta name="description" content="Gia Đình Việt: phụ huynh ghép máy con, chặn app, đặt khung giờ và hạn mức phút, xem vị trí hai chiều, thống kê dùng thật và trợ lý AI đọc đúng số liệu máy. Tải APK 69.9 kèm SHA-256 đối chiếu.">
+<meta name="description" content="Gia Đình Việt: phụ huynh ghép máy con, chặn app, đặt khung giờ và hạn mức phút, xem vị trí hai chiều, thống kê dùng thật và trợ lý AI đọc đúng số liệu máy. Tải APK 69.11 kèm SHA-256 đối chiếu.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;800&display=swap" rel="stylesheet">
@@ -38,7 +38,7 @@
 <main id="top">
   <section class="hero">
     <div class="hero-copy">
-      <p class="eyebrow">Bản 69.9 · Android 7.0 trở lên · build debug</p>
+      <p class="eyebrow">Bản 69.11 · Android 7.0 trở lên · build debug</p>
       <h1>Nội quy dùng điện thoại,<br>hai phía cùng duyệt.</h1>
       <p class="lede">Phụ huynh ghép máy con qua Firebase. Danh sách chặn, khung giờ và hạn mức phút phải được bên kia bấm <em>Đồng ý</em> mới có hiệu lực; mọi lần đổi đều ghi vào nhật ký không sửa được.</p>
       <ul class="chips">
@@ -71,13 +71,13 @@
       <img src="/assets/img/app-screens-dark.png" alt="Lưới 9 màn hình giao diện ứng dụng Gia Đình Việt (nền tối)" loading="lazy" width="1024" height="1024">
     </figure>
 
-    <h3 class="newhead">Mới ở bản 69.9</h3>
+    <h3 class="newhead">Mới ở bản 69.11</h3>
     <ul class="plain">
-      <li>Vị trí hai chiều: máy con cũng thấy vị trí thật của mẹ, không chỉ chiều mẹ xem con.</li>
-      <li>Bản đồ hết "bay cả cây": bộ lọc <code>LocationJumpGuard</code> chặn điểm định vị nhảy đột biến (một phiếu sai số lớn hay một điểm lạc), camera tự bám sát khi con di chuyển thật.</li>
-      <li>Máy mẹ thấy con đang dùng app nào và thống kê dùng app của con ngay trên trang chủ.</li>
-      <li>Chiều ngược lại bị khoá: mẹ tự làm trắng số liệu app của mình trước khi tải lên, nên máy con không thấy mẹ đang dùng gì; máy con cũng không đặt được nội quy chặn — chỉ phụ huynh có quyền đó.</li>
-      <li>Theo dõi pin thật: hiện đúng mức pin, chỉ báo đang sạc khi thật sự cắm sạc, và in "—" thay vì con số bịa khi máy không đọc được pin.</li>
+      <li>Nội quy không còn áp lên máy đặt ra luật: trước đây một hồ sơ phụ huynh cũ (thiếu trường <code>role</code>) vẫn bị bộ chặn đá về Home. Máy chặn bây giờ suy luận bằng hai dấu hiệu — <code>role</code> và <code>studentCode</code> — nên máy mẹ được gỡ chặn, lịch nội quy chỉ chạy trên máy con.</li>
+      <li>Định vị chạy nền thật sự: quyền <em>Vị trí nền</em> và <em>Không tối ưu hoá pin</em> chuyển sang nhóm BẮT BUỘC trong màn quyền. Nguyên nhân gốc của việc "tắt app là mất định vị" là Doze ngắt Foreground Service, không phải thiếu listener.</li>
+      <li>Điểm định vị chính xác hơn khi đang xem bản đồ: ở nền trước, máy xin GPS rồi gửi ngay cả khi chưa có fix; nay khi mở app thì <em>chờ</em> kết quả chính xác, còn chạy nền vẫn giữ nhịp 45 giây và gửi cả điểm sai số lớn (thà in "±218 m" còn hơn chờ vô hạn).</li>
+      <li>Gọi điện: từ 1 server STUN lên 4. Đây chỉ là cải thiện tỉ lệ nối P2P — cuộc gọi vẫn <strong>không</strong> nối được khi hai máy sau NAT đối xứng/4G (cần TURN) hoặc khi máy kia chưa mở app (chưa có push đánh thức).</li>
+      <li>Hàng đợi offline có sẵn từ bản 67: mất mạng thì điểm vị trí và lộ trình xếp hàng trong SharedPreferences, mạng trở lại là tự đẩy lên Firebase (lộ trình giữ tối đa 250 điểm, tràn thì bỏ điểm cũ nhất).</li>
     </ul>
   </section>
 
@@ -148,8 +148,8 @@
     </div>
 
     <div class="hero-cta dl-locked" hidden>
-      <a class="cta" href="https://github.com/robloxhihi/giadinhviet-app/releases/download/v69.9/GiaDinhViet.apk" download>Tải GiaDinhViet.apk <span>76,3&nbsp;MiB</span></a>
-      <a class="ghost" href="https://github.com/robloxhihi/giadinhviet-app/releases/tag/v69.9">Trang release</a>
+      <a class="cta" href="https://github.com/robloxhihi/giadinhviet-app/releases/download/v69.11/GiaDinhViet.apk" download>Tải GiaDinhViet.apk <span>76,3&nbsp;MiB</span></a>
+      <a class="ghost" href="https://github.com/robloxhihi/giadinhviet-app/releases/tag/v69.11">Trang release</a>
       <a class="ghost" href="https://github.com/robloxhihi/giadinhviet-app">Mã nguồn</a>
     </div>
 
@@ -157,14 +157,15 @@
 
     <div class="table-wrap">
       <table>
-        <caption class="sr-only">Thông tin bản 69.9</caption>
+        <caption class="sr-only">Thông tin bản 69.11</caption>
         <tbody>
-          <tr><th>Phiên bản</th><td><code>69.9</code> (tag <code>v69.9</code>) · <code>com.aistudio.vesperafamily.vspxql</code></td></tr>
-          <tr><th>Link tải</th><td><a href="https://github.com/robloxhihi/giadinhviet-app/releases/download/v69.9/GiaDinhViet.apk">releases/download/v69.9/GiaDinhViet.apk</a></td></tr>
+          <tr><th>Phiên bản</th><td><code>69.11</code> (versionCode <code>6911</code>, tag <code>v69.11</code>) · <code>com.aistudio.vesperafamily.vspxql</code></td></tr>
+          <tr><th>Link tải</th><td><a href="https://github.com/robloxhihi/giadinhviet-app/releases/download/v69.11/GiaDinhViet.apk">releases/download/v69.11/GiaDinhViet.apk</a></td></tr>
           <tr><th>Kích thước</th><td><span data-copy="80010184">80.010.184 byte · 76,3&nbsp;MiB</span></td></tr>
-          <tr><th>SHA-256</th><td><span data-copy="e92523d68e1569fe3840eea042e51d4a631d36146d3f1c76270d8c1f74a6b2bc">e92523d6…74a6b2bc</span> <button class="copy" type="button">sao chép</button></td></tr>
-          <tr><th>SHA-256 đầy đủ</th><td><code class="wrap">e92523d68e1569fe3840eea042e51d4a631d36146d3f1c76270d8c1f74a6b2bc</code></td></tr>
-          <tr><th>SHA-1</th><td><code class="wrap">7593bbd94d11aa58d3ad19326fb07be04c445d24</code></td></tr>
+          <tr><th>SHA-256</th><td><span data-copy="0bd9ef47e67f1f1c4e29c443abf415c63fe562afb6f94ab5bd45b709efaf349d">0bd9ef47…efaf349d</span> <button class="copy" type="button">sao chép</button></td></tr>
+          <tr><th>SHA-256 đầy đủ</th><td><code class="wrap">0bd9ef47e67f1f1c4e29c443abf415c63fe562afb6f94ab5bd45b709efaf349d</code></td></tr>
+          <tr><th>SHA-1</th><td><code class="wrap">a2367ad44460e250b679bdf8560967342ebe1b0c</code></td></tr>
+          <tr><th>Build bởi</th><td>GitHub Actions · <a href="https://github.com/robloxhihi/giadinhviet-app/actions/runs/40514158937">run 40514158937</a> · unit test xanh trước khi ký · 27-10-2026</td></tr>
         </tbody>
       </table>
     </div>
@@ -224,7 +225,8 @@
       <li><b>Bản debug.</b> Keystore debug commit công khai, ai clone repo cũng build ra APK cùng chữ ký.</li>
       <li><b>Danh sách tích là app trên máy người đang mở.</b> App của con mà phụ huynh không cài thì không tích trực tiếp được.</li>
       <li><b>Chặn mềm bằng AccessibilityService</b> — Android có thể ngủ giấc hoặc người dùng tắt; đủ giới hạn trong nhà, không chống phá khoá.</li>
-      <li><b>Vị trí chỉ đúng khi máy con mở định vị và có mạng.</b></li>
+      <li><b>Vị trí chỉ đúng khi máy con mở định vị và có mạng.</b> Sai số in trên thẻ là <code>accuracy</code> do hệ thống trả về, không phải con số ước lượng; trên máy giả lập thì nó luôn là một toạ độ cố định.</li>
+      <li><b>Gọi điện chỉ nối khi hai máy cùng mở app</b> và đi được qua NAT. Bản 69.11 dùng 4 server STUN; chưa có TURN (cần máy chủ trả phí) và chưa có push đánh thức, nên 4G/NAT đối xứng vẫn có thể không nối.</li>
     </ul>
   </section>
 </main>
